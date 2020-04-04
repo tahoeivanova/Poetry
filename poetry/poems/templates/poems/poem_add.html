@@ -1,0 +1,10 @@
+{% extends 'poems/base.html'%}
+{% block content %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button style="margin-left: 10px" type="submit">Добавить</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'poems/base.html'%}
+{% block content %}
+<div class='container-1' style="margin-left: 10px">
+    {% for i in poem %}
+    <p><a href="{% url 'poems:poem_single' pk=i.pk %}">{{i.poem_title}}</a></p>
+    {% endfor %}
+</div>
+{% endblock %}

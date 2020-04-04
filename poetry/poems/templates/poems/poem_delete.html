@@ -1,0 +1,12 @@
+{% extends 'poems/base.html'%}
+{% block content %}
+<section>
+    <p>{{object.poem_title}}</p>
+    <p>Вы уверены</p>
+        <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Да</button>
+
+        </form>
+</section>
+{% endblock %}

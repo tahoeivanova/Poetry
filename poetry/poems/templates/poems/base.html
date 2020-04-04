@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="стихи, литература">
+    <meta name="description" content="Стихи. Анимированный вывод текста.">
+    <title>Poems</title>
+    {% load static %}
+    <link rel="stylesheet" href='{% static "poems/style.css" %}'>
+    <link rel="stylesheet" href='{% static "poems/style-menu.css" %}'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href='{% static "poems/animate.css" %}'>
+    <link rel="stylesheet" href='{% static "poems/flex.css" %}'>
+</head>
+<body class="light-theme">
+
+<header>
+
+    <div class="burger-menu">
+        <a href="#" class="burger-menu__button">
+            <span class="burger-menu__lines"></span>
+        </a>
+
+        <nav class="burger-menu__nav">
+            <span  style="text-align: center">
+                <button type="submit" class="btn-01 btn-light wow jackInTheBox">DARK/LIGHT MODE</button>
+            </span>
+            <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
+            <a class="burger-menu__link" href="{% url 'poems:poems' %}">&#10052; Poems</a>
+            <a class="burger-menu__link" href="{% url 'poems:contents' %}">&#10052; Contents</a>
+            {% if user.is_superuser %}
+            <a class="burger-menu__link" href="{% url 'poems:poem_add' %}">&#10052; Add</a>
+            {% endif %}
+            <a class="burger-menu__link" href="{% url 'analytics:pa' %}">&#10052; Meta</a>
+                {% if user.is_authenticated %}
+            <p class="auth_phrase">Рады приветствовать, <br>{{user.username}}</p>
+            <a class="burger-menu__link" href="{% url 'users:logout' %}">&#10006; Exit</a>
+                {% else %}
+            <a class="burger-menu__link" href="{% url 'users:login' %}">&#9786; Auth</a>
+            <a class="burger-menu__link" href="{% url 'users:register' %}">&#10086; Register</a>
+            {% endif %}
+
+        </nav>
+
+        <div class="burger-menu__overlay"></div>
+
+</div>
+
+<span>
+    <h3 class="wow zoomIn" style="text-align: center; padding-top: 50px;">Poems</h3>
+<!--    <h4 class="wow zoomIn" style="text-align: center">Clara Emelyanova</h4>-->
+    <h4 class="wow zoomIn" style="text-align: center">Alexandr Pushkin</h4>
+
+    <div style="text-align: center; padding-bottom: 50px;">
+        <a href="{% url 'poems:poems' %}">
+        <canvas class="wow rotateIn" data-wow-duration="2s" id="spiralCanvas" width="300" height="300"></canvas>
+        </a>
+    </div>
+</span>
+
+</header>
+
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer class="wow flipInX">
+    <div class="footer-class">
+        <p>&#10026;AraxnoAnarxo</p>
+    </div>
+</footer>
+<script src="{% static 'poems/script.js' %}"></script>
+<script src="{% static 'poems/animation-text.js' %}"></script>
+<script src="https://js.cx/libs/animate.js"></script>
+
+<script src="{% static 'poems/wow.min.js' %}"></script>
+<script src="{% static 'poems/archimed-spiral.js' %}"></script>
+
+<script src="{% static 'poems/hypno-spiral.js' %}"></script>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="{% static 'poems/script-menu.js' %}"></script>
+
+
+<script>
+    new WOW().init();
+</script>
+</body>
+</html>
+

@@ -1,0 +1,150 @@
+html,
+body {
+	height: 100%;}
+
+/* Светлая тема */
+.light-theme {
+    font-family: Andale Mono, monospace;
+    font-size: 16px;
+    line-height: 1.5em;
+    text-align: justify;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 0;
+
+}
+
+.light-theme p {
+    padding: 10px;
+    margin: 20px 0;
+}
+/*Рады приветствовать... в меню*/
+.light-theme .auth_phrase {
+    color: #AFEEEE;
+}
+
+.light-theme a {
+  color: #4682B4;
+  text-decoration: none;
+}
+
+
+.light-theme .block-main {
+    background-color: rgba(245, 245, 245, 0.5);
+
+}
+
+.light-theme .text-title {
+    font-family: Andale Mono, monospace;
+    color: #2d508f;
+}
+.light-theme .text {
+    padding: 20px;
+    font-size: 18px;
+    font-family: Andale Mono, monospace;
+    line-height: 2em;
+    white-space: pre-wrap;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #c6c4f4;
+    border-radius: 4px;
+    color: #3632ad;
+}
+
+.light-theme .footer-class {
+
+    margin-top: 100px;
+    padding: 30px;
+    background-color: rgba(0, 130, 130, 0.6);
+    width: 100%;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+}
+
+.light-theme .btn-01 {
+    color: pink;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+}
+
+
+/* Тёмная тема */
+.dark-theme {
+    font-family: Andale Mono, monospace;
+    font-size: 16px;
+    line-height: 1.5em;
+    text-align: justify;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dark-theme p {
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.dark-theme .auth_phrase {
+    color: white;
+}
+
+.dark-theme a {
+  color: #3632ad;
+  text-decoration: none;
+}
+
+.dark-theme .block-main {
+    background-color: rgba(0, 0, 0, 0.3);
+
+    }
+
+.dark-theme .text-title {
+    font-family: Andale Mono, monospace;
+    color: #1E90FF
+}
+.dark-theme .text {
+    padding: 20px;
+    font-size: 18px;
+    font-family: Andale Mono, monospace;
+    font-style: normal;
+    line-height: 2em;
+    white-space: pre-wrap;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #c6c4f4;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+
+
+.dark-theme .footer-class {
+
+    margin-top: 100px;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+}
+
+.dark-theme .btn-01 {
+    color: grey;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+/* Форма */
+
+.form-div {
+    margin: 30px;
+}
+
+
+

@@ -1,0 +1,47 @@
+/* для отображения стихов*/
+
+@media (min-width: 500px) {
+    .container-1 {
+        display: flex;
+        align-items: center;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+
+    } }
+
+    .container-1 div {
+        padding: 10px;
+        border: 1px solid silver;
+    }
+    .box-flex {
+        margin: 10px;
+        flex-basis: 50%
+
+    }
+
+    .text-poem {
+        white-space: pre-wrap;
+
+    }
+
+/* для отображения ТОП 100*/
+
+.words_counts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.words_counts .words_counts_elements {
+    background-color: rgba(65, 105, 225, 0.5);
+    color: white;
+    margin: 1em;
+    text-align: center;
+    flex-basis: 50%;
+}
+
+
+

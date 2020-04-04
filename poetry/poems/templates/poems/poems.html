@@ -1,0 +1,25 @@
+{% extends 'poems/base.html'%}
+{% block content %}
+
+
+<header>
+
+</header>
+        <div class="container-1">
+        {% for p in poem %}
+            <div class="block-main box-flex wow fadeInUp  data-wow-duration="2s">
+                <h3 style="text-align: center"><a href="{% url 'poems:poem_single' pk=p.pk %}">{{p.poem_title}}</a></h3>
+                <p class="text-poem">{{p.poem_text}}</p>
+                {% if user.is_superuser %}
+                <p><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>
+                {% endif %}
+             </div>
+        {% endfor %}
+        </div>
+
+   {% if user.is_superuser %}
+    <p><a href="{% url 'poems:poem_add' %}">Добавить стих</a></p>
+    {% endif %}
+
+
+{% endblock %}

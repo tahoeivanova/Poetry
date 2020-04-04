@@ -1,0 +1,203 @@
+/*Основное меню*/
+
+.burger-menu__button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 30;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #2a2a2a;
+    transition: 0.4s;
+}
+
+.burger-menu__button:hover .burger-menu__lines {
+    filter: brightness(0.7);
+}
+
+
+.burger-menu__lines,
+.burger-menu__lines::after,
+.burger-menu__lines::before {
+   position: absolute;
+   width: 40px;
+   height: 6px;
+   background-color: #fff;
+}
+
+.burger-menu__lines {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.burger-menu__lines::before {
+    content: '';
+    top: -12px;
+}
+
+.burger-menu__lines::after {
+    content: '';
+    top: 12px;
+}
+
+.burger-menu_active .burger-menu__button,
+.burger-menu_active .burger-menu__lines {
+    background-color: transparent;
+}
+
+.burger-menu_active .burger-menu__lines::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.burger-menu_active .burger-menu__lines::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+.burger-menu__nav {
+    padding-top: 80px;
+    position: fixed;
+    z-index: 20;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    background-color: #2a2a2a;
+    overflow-y: auto;
+    left:-100%;
+    transition: 0.5s;
+}
+
+.burger-menu_active .burger-menu__nav {
+    left: 0;
+}
+
+.burger-menu__link {
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+
+.burger-menu__link:hover {
+    filter:brightness(0.7);
+}
+
+.burger-menu__overlay {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.burger-menu_active .burger-menu__overlay {
+    display: block;
+}
+
+
+/* Меню 2 вариант*/
+/*
+.menu-item {
+    border: 1px solid white;
+    border-radius: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-item .submenu {
+    text-align: center;
+    height: 40px;
+    width: 120px;
+    background: orange;
+    border: 2px solid white;
+    position: absolute;
+    cursor: pointer;
+}
+*/
+
+/*Меню 3 вариант*/
+#sidebar {
+    position: fixed;
+    width: 250px;
+    /*height: 100%;*/
+    /*background: #57626F;*/
+    background: rgba(0, 0, 0, 0.4);
+
+    border: 4px solid #E0E4EA;
+    border-radius: 10px;
+    /*left: -254px;*/
+    left: -260px;
+    top: 10px;
+    padding-bottom: 10px;
+
+
+    -moz-transition: all 600ms;
+    -webkit-transition: all 600ms;
+    transition: all 600ms;
+}
+
+#sidebar.active {
+    /*left: 0px;*/
+    left: 20px
+
+    }
+
+#sidebar ul li:first-child {
+    text-align: center;
+    color: white;
+    font-size: 1.95em;
+    list-style: none;
+    padding: 25px 10px 10px 10px;
+}
+
+#sidebar ul li:not(first-child) {
+    width: 90%;
+    margin-left: 10%;
+    font-size: 1.1em;
+    list-style: none;
+    padding: 15px 10px 10px 10px;
+}
+
+#sidebar ul li a {
+    color: #dfe5eb;
+    text-decoration: none
+
+}
+#sidebar ul li a:hover {color: #59e9df}
+
+#sidebar .toggle-btn {
+    position: absolute;
+    left: 270px;
+    top: 20px;
+    background: #E0E5EA;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+#sidebar .toggle-btn:hover {background-color: #556270}
+#sidebar .toggle-btn:hover span {background-color: #fafafa}
+
+
+
+#sidebar .toggle-btn span {
+    display: block;
+    width: 25px;
+    height: 4px;
+    background-color: #666;
+    margin: 4px 0;
+
+}
