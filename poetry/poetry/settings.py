@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'analytics.apps.AnalyticsConfig',
-    'stories.apps.StoriesConfig',
     'users.apps.UsersConfig',
     'poems.apps.PoemsConfig',
     'django.contrib.admin',
