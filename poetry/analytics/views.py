@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.shortcuts import render
 from poems.models import Poem
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 import collections, pymorphy2
 from .PoetAnalytics import MetaPoet
+
 
 
 # Create your views here.
@@ -54,3 +55,16 @@ def all_words_counted(request):
 
     return render(request, 'analytics/poet_analytics.html', {'poems_all':poems_all,'result':result,'results_list_words':results_list_words, 'results_list_counts': results_list_counts,'counter_all': counter_all,'counter_unique':counter_unique})
 
+def poem_dictionary(request, pk):
+    poem_original = get_object_or_404(Poem, pk=pk)
+    poem = str(poem_original.poem_text)
+    meta_poem = MetaPoet(poem)  # создаем объект класса MetaPoet, куда передаем стихи
+    meta_poem.remove_punctuation()
+    meta_poem.split_words()
+    meta_poem.lower_case()
+    lemmed_words = meta_poem.lemma()  # список всех лемматизированных слов
+    len_lemmed_words = len(lemmed_words)
+    unique_words_list = meta_poem.unique_words()
+    len_unique_words = len(unique_words_list)
+    word_list_poem = meta_poem.poem_dictionary()
+    return render(request, 'analytics/poem_dictionary.html', {'len_unique_words':len_unique_words,'len_lemmed_words':len_lemmed_words,'poem': word_list_poem, 'poem_original': poem_original})

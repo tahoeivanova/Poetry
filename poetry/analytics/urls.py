@@ -21,5 +21,6 @@ app_name = 'analytics'
 
 urlpatterns = [
     path('', views.all_words_counted, name='pa'),
+    path('dictionary/<int:pk>/', views.poem_dictionary, name='pd'),
 
 ]

@@ -1,17 +1,8 @@
 {% extends 'poems/base.html' %}
 {% block content %}
 
-<style>
-    .container1 {
-    display: flex;
-    justify-content: center;
 
-    }
-
-</style>
-
-
-<div class="container1">
+<div class="container-numbers">
     <div>
         <p>Стихов</p>
         <p><input id="poems_all" value="0"></p>
@@ -24,8 +15,8 @@
         <p>Уникальных слов</p>
         <p><input id="counter_unique" value="0"></p>
     </div>
-
 </div>
+
 <h3 style="text-align: center">Топ-100 слов:</h3>
 <div class="words_counts">
 <ol style="color: black">

@@ -45,34 +45,70 @@ class MetaPoet:
     def stop_words(self):
         pass
 
-#
-# if __name__ == '__main__':
-#     # примеры
-#     poem_1 = "Я помню! Чудное ; мгновенье, " \
-#              "передо мной то явилась, ты -  я не  " \
-#              "помню ничего кроме мгновенье"
-#     poem_2 = 'Яблоко, упало на яблоко'
-#
-#     meta_poet_object = MetaPoet(poem_2)  # первоначальный текст
-#     print(meta_poet_object)
-#     print(len(meta_poet_object))  # выводит сколько всего символов
-#
-#     meta_poet_object.remove_punctuation()  # текст без пунктуации, знаки заменяет на пробел
-#     print(meta_poet_object)
-#     print(len(meta_poet_object))  # выводит сколько всего символов, но знаки заменяет на пробел
-#
-#     meta_poet_object.split_words()  # список слов
-#     print(meta_poet_object)
-#     print(len(meta_poet_object))  # выводит сколько всего слов
-#
-#     meta_poet_object.lower_case()  # слова с маленькой буквы
-#     print(meta_poet_object)
-#     print(len(meta_poet_object))  # выводит сколько всего слов
-#
-#     meta_poet_object.lemma()  # лемматизация
-#     print(meta_poet_object)
-#     print(len(meta_poet_object))  # выводит сколько всего слов
-#
-#     meta_poet_object.unique_words()  # уникальные слова
-#     print(meta_poet_object)
-#     print(len(meta_poet_object))
+    def poem_dictionary(self):
+        all_noun = []  # NOUN имя существительное хомяк
+        all_adjf = []  # ADJF имя прилагательное (полное) хороший
+        all_adjs = []  # ADJS имя прилагательное (краткое) хорош
+        all_comp = []  # COMP компаратив лучше, получше, выше
+        all_verb = []  # VERB глагол (личная форма) говорю, говорит, говорил
+        all_infn = []  # INFN глагол (инфинитив) говорить, сказать
+        all_prtf = []  # PRTF причастие (полное) прочитавший, прочитанная
+        all_prts = []  # PRTS причастие (краткое) прочитана
+        all_grnd = []  # GRND деепричастие прочитав, рассказывая
+        all_numr = []  # NUMR числительное три, пятьдесят
+        all_advb = []  # ADVB наречие круто
+        all_npro = []  # NPRO местоимение-существительное он
+        all_pred = []  # PRED предикатив некогда
+        all_prep = []  # PREP предлог в
+        all_conj = []  # CONJ союз и
+        all_prcl = []  # PRCL частица бы, же, лишь
+        all_intj = []  # INTJ междометие
+        unknown_part = [] # не определенные pymorphy2 части речи
+
+        morph = pymorphy2.MorphAnalyzer()
+
+        for word in self.poem:
+            a = morph.parse(word)[0]
+            if a.tag.POS == 'NOUN':
+                all_noun.append(a.normal_form)
+            elif a.tag.POS == 'ADJF':
+                all_adjf.append(a.normal_form)
+            elif a.tag.POS == 'ADJS':
+                all_adjs.append(a.normal_form)
+            elif a.tag.POS == 'COMP':
+                all_comp.append(a.normal_form)
+            elif a.tag.POS == 'VERB':
+                all_verb.append(a.normal_form)
+            elif a.tag.POS == 'INFN':
+                all_infn.append(a.normal_form)
+            elif a.tag.POS == 'PRTF':
+                all_prtf.append(a.normal_form)
+            elif a.tag.POS == 'PRTS':
+                all_prts.append(a.normal_form)
+            elif a.tag.POS == 'GRND':
+                all_grnd.append(a.normal_form)
+            elif a.tag.POS == 'NUMR':
+                all_numr.append(a.normal_form)
+            elif a.tag.POS == 'ADVB':
+                all_advb.append(a.normal_form)
+            elif a.tag.POS == 'NPRO':
+                all_npro.append(a.normal_form)
+            elif a.tag.POS == 'PRED':
+                all_pred.append(a.normal_form)
+            elif a.tag.POS == 'PREP':
+                all_prep.append(a.normal_form)
+            elif a.tag.POS == 'CONJ':
+                all_conj.append(a.normal_form)
+            elif a.tag.POS == 'PRCL':
+                all_prcl.append(a.normal_form)
+            elif a.tag.POS == 'INTJ':
+                all_intj.append(a.normal_form)
+            else:
+                unknown_part.append(a)
+
+        self.all_parts_of_speech = {'имя существительное': all_noun, 'имя прилагательное (полное)': all_adjf, 'имя прилагательное (краткое)':all_adjs, 'компаратив':all_comp,
+     'глагол': all_infn, 'причастие (полное)': all_prtf, 'причастие (краткое)': all_prts,
+        'деепричастие':all_grnd,'числительное':all_numr, 'наречие':all_advb, 'местоимение-существительное': all_npro, 'предикатив':all_pred,
+        'предлог': all_prep, 'союз': all_conj, 'частица': all_prcl, 'междометие': all_intj}
+
+        return self.all_parts_of_speech

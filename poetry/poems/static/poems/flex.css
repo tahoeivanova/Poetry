@@ -43,5 +43,26 @@
     flex-basis: 50%;
 }
 
+/*Словарь стихотворения*/
 
+.container-dict {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
+.container-dict div {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid silver;
+        background-color: rgba(255, 228, 181, 0.5)
+    }
+
+/*контейнер для чисел*/
+
+    .container-numbers {
+    display: flex;
+    justify-content: center;
+
+    }
