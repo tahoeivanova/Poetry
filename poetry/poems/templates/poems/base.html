@@ -12,6 +12,27 @@
     <link rel="stylesheet" href='{% static "poems/animate.css" %}'>
     <link rel="stylesheet" href='{% static "poems/flex.css" %}'>
 </head>
+
+<style>
+html,
+body {
+  height: 100%;
+}
+#wrap {
+  min-height: 100%;
+}
+main {
+  padding-bottom: 100px;
+  /*Высота футера*/
+}
+footer {
+  margin-top: -100px;
+  /*Минус Высота футера*/
+  height: 100px;
+  /*Высота футера*/
+}
+</style>
+<div id="wrap">
 <body class="light-theme">
 
 <header>
@@ -63,6 +84,7 @@
 <main>
 {% block content %}{% endblock %}
 </main>
+</div>
 <footer class="wow flipInX">
     <div class="footer-class">
         <p>&#10026;AraxnoAnarxo</p>
