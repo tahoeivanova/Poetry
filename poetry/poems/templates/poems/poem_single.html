@@ -7,7 +7,9 @@
     <h3 class="text-title"><a href="{% url 'analytics:pd' pk=object.pk%}">{{object.poem_title}}</a></h3>
     <textarea class="text" id="textExample" rows="10" cols="60">{{object.poem_text}}</textarea>
     <button onclick="animateText(textExample)" class="btn-light btn btn-send-message btn-md" type="submit">Запустить анимацию набора текста!</button>
+
 </div>
+<p><a href="{% url 'poems:audio' pk=object.pk %}">Аудио</a></p>
 
 <p><a href="{% url 'analytics:pd' pk=object.pk %}">Словарь стихотворения</a></p>
 {% endblock %}

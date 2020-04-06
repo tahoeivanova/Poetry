@@ -13,6 +13,7 @@
                 {% if user.is_superuser %}
                 <p><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>
                 {% endif %}
+                <p><a href="{% url 'poems:audio' pk=p.pk %}">Аудио</a></p>
                 <p><a href="{% url 'analytics:pd' pk=p.pk %}">Словарь стихотворения</a></p>
 
              </div>

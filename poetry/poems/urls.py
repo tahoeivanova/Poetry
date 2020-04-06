@@ -25,5 +25,6 @@ urlpatterns = [
     path('poem_single/<int:pk>/', views.PoemDetailView.as_view(), name='poem_single'),
     path('delete/<int:pk>/', views.PoemDeleteView.as_view(), name='poem_delete'),
     path('contents/', views.ContentsView.as_view(), name='contents'),
+    path('audio/<int:pk>/', views.audio_poem, name='audio'),
 
 ]
