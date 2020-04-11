@@ -46,7 +46,11 @@
 
     <ul id="myUl">
     {% for i in poem %}
+        {% if i.first_line == None %}
         <li><a href="{% url 'poems:poem_single' pk=i.pk %}">{{i.poem_title}}</a></li>
+        {% else %}
+        <li><a href="{% url 'poems:poem_single' pk=i.pk %}">{{i.poem_title}} ({{i.first_line}})</a></li>
+        {% endif %}
         {% endfor %}
  	</ul>
 

@@ -1,21 +1,27 @@
 /* для отображения стихов*/
 
-@media (min-width: 500px) {
+@media (min-width: 500px){
     .container-1 {
         display: flex;
         align-items: center;
         flex-direction: column-reverse;
         flex-wrap: wrap;
 
-    } }
+}
+    }
 
     .container-1 div {
         padding: 10px;
         border: 1px solid silver;
+
+
     }
     .box-flex {
         margin: 10px;
-        flex-basis: 50%
+        flex-basis: 50%;
+
+
+
 
     }
 

@@ -4,6 +4,8 @@ from poems.models import Poem
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 import collections, pymorphy2
 from .PoetAnalytics import MetaPoet
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 
@@ -31,7 +33,7 @@ def all_words_counted(request):
 
     morph = pymorphy2.MorphAnalyzer()
     # список топ 100 из существительных и глаголов
-    lemmed_words = [word for word in lemmed_words if morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS' or morph.parse(word)[0].tag.POS == 'PRTF' or morph.parse(word)[0].tag.POS == 'GRND' or morph.parse(word)[0].tag.POS == 'ADVB']
+    lemmed_words = [word for word in lemmed_words if morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS' or morph.parse(word)[0].tag.POS == 'PRTF' or morph.parse(word)[0].tag.POS == 'GRND' or morph.parse(word)[0].tag.POS == 'ADVB'or morph.parse(word)[0].tag.POS == 'NPRO']
 
 
     c = collections.Counter(lemmed_words)
@@ -55,6 +57,8 @@ def all_words_counted(request):
 
     return render(request, 'analytics/poet_analytics.html', {'poems_all':poems_all,'result':result,'results_list_words':results_list_words, 'results_list_counts': results_list_counts,'counter_all': counter_all,'counter_unique':counter_unique})
 
+
+@login_required
 def poem_dictionary(request, pk):
     poem_original = get_object_or_404(Poem, pk=pk)
     poem = str(poem_original.poem_text)
