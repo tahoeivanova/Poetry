@@ -1,5 +1,5 @@
 import string
-# import collections
+import collections
 import pymorphy2
 import random
 
@@ -36,6 +36,74 @@ class MetaPoet:
         morph = pymorphy2.MorphAnalyzer()
         self.poem = list(map(lambda word: morph.parse(word)[0].normal_form, self.poem))
         return self.poem
+
+# ________________________TOP 100 WORDS
+    def top_100_words(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS' or morph.parse(word)[0].tag.POS == 'PRTF' or morph.parse(word)[0].tag.POS == 'GRND' or morph.parse(word)[0].tag.POS == 'ADVB'or morph.parse(word)[0].tag.POS == 'NPRO']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+# ________________________PARTS OF SPEECH START
+    def top_100_nouns(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'NOUN']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+    def top_100_adjf(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+    def top_100_nouns_and_adjf(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if
+                        morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'ADJF'or morph.parse(word)[0].tag.POS == 'ADJS']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+    def top_100_verbs(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'INFN']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+    def top_100_nouns_and_verbs(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'NOUN']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+    def top_100_nouns_and_verbs_and_adjf(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'ADJF'or morph.parse(word)[0].tag.POS == 'ADJS']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+
+    def top_100_verbs_and_adjf(self):
+        lemmed_words = []
+        morph = pymorphy2.MorphAnalyzer()
+        lemmed_words = [word for word in self.poem if morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'ADJF'or morph.parse(word)[0].tag.POS == 'ADJS']
+        c = collections.Counter(lemmed_words)
+        self.result = c.most_common(100)
+        return self.result
+#________________________PARTS OF SPEECH END
 
     def unique_words(self):
         self.poem = set(self.poem)
