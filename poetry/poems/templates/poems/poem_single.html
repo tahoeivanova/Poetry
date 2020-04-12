@@ -9,6 +9,15 @@
     <button onclick="animateText(textExample)" class="btn-light btn btn-send-message btn-md" type="submit">Запустить анимацию набора текста!</button>
 
 </div>
+<p>Количество тэгов: {{object.tag_number}}</p>
+<div>
+    <p>Тэги:</p>
+    <ul>
+        {% for i in object.poem_tag.all %}
+        <li>{{i}}</li>
+        {%endfor%}
+    </ul>
+</div>
 <p><a href="{% url 'poems:audio' pk=object.pk %}">Аудио</a></p>
 
 <p><a href="{% url 'analytics:pd' pk=object.pk %}">Словарь стихотворения</a></p>

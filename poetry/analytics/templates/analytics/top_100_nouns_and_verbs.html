@@ -1,0 +1,59 @@
+{% extends 'poems/base.html' %}
+{% block content %}
+
+
+<div class="container-numbers">
+    <div>
+        <p>Стихов</p>
+        <p><input id="poems_all" value="0"></p>
+    </div>
+    <div>
+        <p>Всего слов</p>
+        <p><input id="counter_all" value="0"></p>
+    </div>
+    <div>
+        <p>Уникальных слов</p>
+        <p><input id="counter_unique" value="0"></p>
+    </div>
+</div>
+<h3 style="text-align: center">Топ-100 существительных и глаголов</h3>
+<div class="words_counts">
+<ol style="color: black">
+    {% for i in result %}
+       <li> <div class="words_counts_elements">
+            {{i}}
+        </div></li>
+    {% endfor %}
+</ol>
+</div>
+{% load static %}
+<script src="{% static 'poems/anime.min.js' %}"></script>
+
+<script>
+var counterAll = {{counter_all}}
+    anime({
+  targets: '#counter_all',
+  value: [0, counterAll],
+  round: 1,
+  easing: 'easeInOutExpo'
+});
+var counterUnique = {{counter_unique}}
+    anime({
+  targets: '#counter_unique',
+  value: [0, counterUnique],
+  round: 1,
+  easing: 'easeInOutExpo'
+});
+
+var poemsAll = {{poems_all}}
+    anime({
+  targets: '#poems_all',
+  value: [0, poemsAll],
+  round: 1,
+  easing: 'easeInOutExpo'
+});
+</script>
+
+
+
+{% endblock %}

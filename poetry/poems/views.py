@@ -21,6 +21,13 @@ class ContentsView(ListView):
     context_object_name = 'poem'
 
 
+class PoemUpdateView(UpdateView):
+    model = Poem
+    template_name = 'poems/poem_update.html'
+    fields = '__all__'
+    success_url = reverse_lazy('poems:poems')
+
+
 @user_passes_test(lambda user: user.is_superuser)
 def poem_add(request):
     if request.method == "GET":
