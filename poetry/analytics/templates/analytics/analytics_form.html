@@ -1,0 +1,66 @@
+{% extends 'poems/base.html' %}
+{% block content %}
+
+
+
+<div class="container-1">
+    <div class="block-main box-flex wow fadeInUp  data-wow-duration="2s">
+        <h3 style="text-align: center"><a href="{% url 'poems:poem_single' pk=poem_original.pk %}">{{poem_original.poem_title}}</a></h3>
+        <p class="text-poem">{{poem_original.poem_text}}</p>
+     </div>
+</div>
+
+<div class="wow fadeIn data-wow-duration="2s"">
+<p style="text-align: center; text-transform: uppercase">Словарь стихотворения</p>
+</div>
+
+<div class="container-numbers">
+
+    <div>
+        <p>Всего слов</p>
+        <p><input id="len_lemmed_words" value="0"></p>
+    </div>
+    <div>
+        <p>Уникальных слов</p>
+        <p><input id="len_unique_words" value="0"></p>
+    </div>
+
+</div>
+
+    <div class="container-dict">
+        {% for p, j in poem.items %}
+            <div class="wow fadeInLeft  data-wow-duration="2s"">
+                <p style="background-color: rgba(0, 128, 128, 0.4); color: white">{{p}}</p>
+                {% for word in j %}
+                {{word}}
+                {% endfor %}
+             </div>
+        {% endfor %}
+    </div>
+
+<p><a href="{% url 'poems:poems' %}">К стихотворениям</a></p>
+{% load static %}
+<script src="{% static 'poems/anime.min.js' %}"></script>
+<script>
+var lenLemmedWords = {{len_lemmed_words}}
+    anime({
+  targets: '#len_lemmed_words',
+  value: [0, lenLemmedWords],
+  round: 1,
+  easing: 'easeInOutExpo',
+  delay: 2000
+});
+
+var lenUniqueWords = {{len_unique_words}}
+    anime({
+  targets: '#len_unique_words',
+  value: [0, lenUniqueWords],
+  round: 1,
+  easing: 'easeInOutExpo',
+  delay: 2000
+});
+
+</script>
+
+
+{% endblock %}

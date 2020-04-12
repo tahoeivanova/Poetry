@@ -17,6 +17,7 @@ class ViewsTest(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
+
     # проверка статуса ответа по запросу
     def test_status_add_poem(self):
         response = self.client.get('/poems/add/')
