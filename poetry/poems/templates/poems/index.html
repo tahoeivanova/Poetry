@@ -5,7 +5,13 @@
 
 {% for poet in poets %}
         <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
-        <h4><a>{{poet}}</a></h4>
+        <h4><a href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">{{poet}}</a> ||
+        <a href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">Стихи</a> ||
+        <a href="{% url 'analytics:all_words_counted' poet=poet.last_name %}">Аналитика</a> ||
+        <a href="{% url 'poems:contents_author' poet=poet.last_name %}">Содержание</a></h4>
+
+
+
         </div>
 
 {% endfor %}

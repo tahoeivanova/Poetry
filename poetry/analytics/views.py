@@ -13,8 +13,8 @@ from .forms import DictionaryFormPartOfSpeech
 # Create your views here.
 
 # подсчет числа слов всего, уникальных слов, топ 100 слов
-def all_words_counted(request):
-    poems = Poem.objects.all() # все объекты класса Стихи
+def all_words_counted(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []

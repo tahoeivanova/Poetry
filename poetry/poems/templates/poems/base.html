@@ -48,7 +48,7 @@ footer {
             </span>
             <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
             <a class="burger-menu__link" href="{% url 'analytics:checkbox' %}">&#9872; Meta</a>
-            <a class="burger-menu__link" href="{% url 'poems:poems' %}">&#10052; Poems</a>
+            <a class="burger-menu__link" href="{% url 'poems:poems' %}">&#10052; All Poems</a>
             <a class="burger-menu__link" href="{% url 'poems:contents' %}">&#10052; Contents</a>
             {% if user.is_superuser %}
             <a class="burger-menu__link" href="{% url 'poems:poem_add' %}">&#10052; Add</a>
