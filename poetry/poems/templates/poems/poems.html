@@ -10,6 +10,8 @@
             <div class="block-main box-flex wow fadeInUp  data-wow-duration="2s">
                 <h3 style="text-align: center"><a href="{% url 'poems:poem_single' pk=p.pk %}">{{p.poem_title}}</a></h3>
                 <p class="text-poem">{{p.poem_text}}</p>
+                <p>{{p.poem_year}}</p>
+                <p>{{p.poet_name}}</p>
                 {% if user.is_superuser %}
                 <p><a href="{% url 'poems:poem_update' pk=p.pk %}">Изменить</a></p>
                 <p><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>

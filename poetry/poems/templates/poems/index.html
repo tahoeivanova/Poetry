@@ -3,7 +3,12 @@
 {% extends 'poems/base.html' %}
 {% block content %}
 
+{% for poet in poets %}
+        <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
+        <h4><a>{{poet}}</a></h4>
+        </div>
 
+{% endfor %}
 
 
 
