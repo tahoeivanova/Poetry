@@ -3,6 +3,17 @@ from analytics.PoetAnalytics import MetaPoet
 
 # Create your models here.
 
+# менеджеры моделей
+# class PushkinManager(models.Manager):
+#     def get_queryset(self):
+#         all_objects = super().get_queryset()
+#         return all_objects.filter(poet_name__last_name='Пушкин')
+#
+# class LermontovManager(models.Manager):
+#     def get_queryset(self):
+#         all_objects = super().get_queryset()
+#         return all_objects.filter(poet_name__last_name='Лермонтов')
+
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=100, default="n/a")
@@ -26,6 +37,9 @@ class Poem(models.Model):
     first_line = models.CharField(max_length=200, null=True, blank=True)
     poem_tag = models.ManyToManyField(Tag)
     poet_name = models.ForeignKey(Poet, on_delete=models.DO_NOTHING)
+    # objects = models.Manager()
+    # pushkin=PushkinManager()
+    # lermontov=LermontovManager()
 
     def __str__(self):
         return f'{self.poem_title}'

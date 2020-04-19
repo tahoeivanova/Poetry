@@ -22,6 +22,7 @@ app_name = 'analytics'
 urlpatterns = [
     path('', views.checkbox_dictionary, name='checkbox'),
     path('dictionary/<int:pk>/', views.poem_dictionary, name='pd'),
+    path('all_words_counted/<poet>/', views.all_words_counted, name='all_words_counted'),
     path('top_100_words', views.top_100_words, name='top_100_words'),
     path('top_100_nouns', views.top_100_nouns, name='top_100_nouns'),
     path('top_100_adjf', views.top_100_adjf, name='top_100_adjf'),

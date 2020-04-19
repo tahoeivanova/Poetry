@@ -7,18 +7,45 @@ from .forms import PoemForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .AudioPoet import AudioPoet
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+# все стихи всех поэтов
 class PoemView(ListView):
     model = Poem
     template_name = 'poems/poems.html'
     context_object_name = 'poem'
+    paginate_by = 10
+
+# стихи одного автора
+
+def poems_author(request, poet):
+    poem = Poem.objects.filter(poet_name__last_name=poet)
+    paginator = Paginator(poem, 10)  # Show 10 contacts per page.
+    page = request.GET.get('page')
+    try:
+        poem = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        poem = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        poem = paginator.page(paginator.num_pages)
+
+
+    return render(request, 'poems/poems_author.html', {'poem': poem})
+
 
 
 class ContentsView(ListView):
     model = Poem
     template_name = 'poems/contents.html'
     context_object_name = 'poem'
+# содержание по одному автору
+
+def contents_author(request, poet):
+    poem = Poem.objects.filter(poet_name__last_name=poet)
+    return render(request, 'poems/contents_author.html', {'poem':poem})
 
 
 class PoemUpdateView(UpdateView):

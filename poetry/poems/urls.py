@@ -21,6 +21,8 @@ app_name = 'poems'
 
 urlpatterns = [
     path('', views.PoemView.as_view(), name = 'poems'),
+    path('poet/<poet>', views.poems_author, name='poems_pushkin'),
+    path('contents/<poet>', views.contents_author, name='contents_author'),
     path('add/', views.poem_add, name='poem_add'),
     path('poem_single/<int:pk>/', views.PoemDetailView.as_view(), name='poem_single'),
     path('delete/<int:pk>/', views.PoemDeleteView.as_view(), name='poem_delete'),

@@ -13,8 +13,8 @@ from .forms import DictionaryFormPartOfSpeech
 # Create your views here.
 
 # подсчет числа слов всего, уникальных слов, топ 100 слов
-def all_words_counted(request):
-    poems = Poem.objects.all() # все объекты класса Стихи
+def all_words_counted(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
@@ -32,33 +32,32 @@ def all_words_counted(request):
         counter_unique += len(meta_poem)
 
 
-    # morph = pymorphy2.MorphAnalyzer()
-    # # список топ 100 из существительных и глаголов
-    # lemmed_words = [word for word in lemmed_words if morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS' or morph.parse(word)[0].tag.POS == 'PRTF' or morph.parse(word)[0].tag.POS == 'GRND' or morph.parse(word)[0].tag.POS == 'ADVB'or morph.parse(word)[0].tag.POS == 'NPRO']
-
-    #
-    # c = collections.Counter(lemmed_words)
-    # result = c.most_common(100)
-    #
-    # #  вывод кортежа
-    #
-    # # преобразовываем список кортежей в список (убираем цифры, который обозначают частоту встречаемости)
-    #
-    # results_list_words = []
-    # results_list_counts = [] # СЕЙЧАС СПИСКИ НЕ ИСПОЛЬЗУЮТСЯ
-    # # НУЖНО ДОДЕЛАТЬ И ПРОИТЕРИРОВАТЬ СЛОВАРЬ
-    #
-    # for tuple_ in result:
-    #     for i in range(len(tuple_)):
-    #         if i == 0:
-    #             results_list_words.append(tuple_[i])
-    #         if i == 1:
-    #             results_list_counts.append(tuple_[i])
+    morph = pymorphy2.MorphAnalyzer()
+    # список топ 100 из существительных, глаголов и др
+    lemmed_words = [word for word in lemmed_words if morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'INFN' or morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS' or morph.parse(word)[0].tag.POS == 'PRTF' or morph.parse(word)[0].tag.POS == 'GRND' or morph.parse(word)[0].tag.POS == 'ADVB'or morph.parse(word)[0].tag.POS == 'NPRO']
 
 
+    c = collections.Counter(lemmed_words)
+    result = c.most_common(100)
 
-    return render(request, 'analytics/poet_analytics.html', {'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
-# 'result':result,'results_list_words':results_list_words, 'results_list_counts': results_list_counts,
+    #  вывод кортежа
+
+    # преобразовываем список кортежей в список (убираем цифры, который обозначают частоту встречаемости)
+
+    results_list_words = []
+    results_list_counts = [] # СЕЙЧАС СПИСКИ НЕ ИСПОЛЬЗУЮТСЯ
+    # НУЖНО ДОДЕЛАТЬ И ПРОИТЕРИРОВАТЬ СЛОВАРЬ
+
+    for tuple_ in result:
+        for i in range(len(tuple_)):
+            if i == 0:
+                results_list_words.append(tuple_[i])
+            if i == 1:
+                results_list_counts.append(tuple_[i])
+
+
+
+    return render(request, 'analytics/poet_analytics.html', {'poet':poet, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique, 'result':result,'results_list_words':results_list_words, 'results_list_counts': results_list_counts})
 
 
 @login_required
