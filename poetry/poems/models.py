@@ -4,26 +4,28 @@ from analytics.PoetAnalytics import MetaPoet
 # Create your models here.
 
 
-
 class Tag(models.Model):
     tag_name = models.CharField(max_length=100, default="n/a")
 
     def __str__(self):
         return f'{self.tag_name}'
 
-# не получается добавить объект в Poem/Poet:
-# при загрузке страницы в admin OperationalError: no such column: poems_poem.poet_name_id
-# class Poet(models.Model):
-#     first_name = models.CharField(max_length=100, default='n/a')
-#     last_name = models.CharField(max_length=100, default='n/a')
-#     father_name = models.CharField(max_length=100, default='n/a')
+class Poet(models.Model):
+    last_name = models.CharField(max_length=100, default='n/a')
+    first_name = models.CharField(max_length=100, default='n/a')
+    father_name = models.CharField(max_length=100, default='n/a')
+
+    def __str__(self):
+        return f'{self.last_name} {self.first_name} {self.father_name}'
+
 
 class Poem(models.Model):
-    poem_text = models.TextField()
-    poem_title = models.CharField(max_length=1000)
-    first_line = models.CharField(max_length=1000, null=True, blank=True)
+    poem_text = models.TextField(unique=True)
+    poem_title = models.CharField(max_length=200)
+    poem_year = models.CharField(default=' ', max_length=10,null=True, blank=True)
+    first_line = models.CharField(max_length=200, null=True, blank=True)
     poem_tag = models.ManyToManyField(Tag)
-    # name = models.ForeignKey(Poet, on_delete=models.CASCADE, default='')
+    poet_name = models.ForeignKey(Poet, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return f'{self.poem_title}'
