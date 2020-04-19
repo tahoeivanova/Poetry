@@ -46,7 +46,18 @@ footer {
             <span  style="text-align: center">
                 <button type="submit" class="btn-01 btn-light wow jackInTheBox">DARK/LIGHT MODE</button>
             </span>
-            <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
+        <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
+
+            {% for poet in poets %}
+            <p class="burger-menu__link">{{poet.last_name}}</p>
+            <ul>
+        <li><a class="burger-menu__link" href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">Стихи</a></li>
+        <li><a class="burger-menu__link" href="{% url 'analytics:all_words_counted' poet=poet.last_name %}">Аналитика</a></li>
+        <li><a class="burger-menu__link" href="{% url 'poems:contents_author' poet=poet.last_name %}">Содержание</a></p></li>
+            </ul>
+
+        {% endfor %}
+
             <a class="burger-menu__link" href="{% url 'analytics:checkbox' %}">&#9872; Meta</a>
             <a class="burger-menu__link" href="{% url 'poems:poems' %}">&#10052; All Poems</a>
             <a class="burger-menu__link" href="{% url 'poems:contents' %}">&#10052; Contents</a>
@@ -68,15 +79,11 @@ footer {
 </div>
 
 <span>
-    <h3 class="wow zoomIn" style="text-align: center; padding-top: 50px;">Poems</h3>
+    <h3 class="wow zoomIn" style="text-align: center; padding-top: 50px;">Стихотворения</h3>
 <!--    <h4 class="wow zoomIn" style="text-align: center">Clara Emelyanova</h4>-->
 <!--    <h4 class="wow zoomIn" style="text-align: center">Alexandr Pushkin</h4>-->
 
-    <div style="text-align: center; padding-bottom: 50px;">
-        <a href="{% url 'poems:poems' %}">
-        <canvas class="wow rotateIn" data-wow-duration="2s" id="spiralCanvas" width="300" height="300"></canvas>
-        </a>
-    </div>
+
 </span>
 
 </header>
@@ -85,7 +92,7 @@ footer {
 {% block content %}{% endblock %}
 </main>
 </div>
-<footer class="wow flipInX">
+<footer>
     <div class="footer-class">
         <p>&#10026;AraxnoAnarxo</p>
     </div>
