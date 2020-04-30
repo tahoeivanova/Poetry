@@ -54,11 +54,12 @@ footer {
         <li><a class="burger-menu__link" href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">Стихи</a></li>
         <li><a class="burger-menu__link" href="{% url 'analytics:all_words_counted' poet=poet.last_name %}">Аналитика</a></li>
         <li><a class="burger-menu__link" href="{% url 'poems:contents_author' poet=poet.last_name %}">Содержание</a></p></li>
+        <li><a class="burger-menu__link" href="{% url 'analytics:checkbox' poet=poet.last_name %}">&#9872; Meta</a></li>
+
             </ul>
 
         {% endfor %}
 
-            <a class="burger-menu__link" href="{% url 'analytics:checkbox' %}">&#9872; Meta</a>
             <a class="burger-menu__link" href="{% url 'poems:poems' %}">&#10052; All Poems</a>
             <a class="burger-menu__link" href="{% url 'poems:contents' %}">&#10052; Contents</a>
             {% if user.is_superuser %}

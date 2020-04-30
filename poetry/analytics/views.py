@@ -76,7 +76,7 @@ def poem_dictionary(request, pk):
     return render(request, 'analytics/poem_dictionary.html', {'len_unique_words':len_unique_words,'len_lemmed_words':len_lemmed_words,'poem': word_list_poem, 'poem_original': poem_original})
 
 
-def checkbox_dictionary(request):
+def checkbox_dictionary(request, poet):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         form = DictionaryFormPartOfSpeech(request.POST)
@@ -89,25 +89,25 @@ def checkbox_dictionary(request):
 
             # NOUN
             if is_noun==True and is_adjf==False and is_verb==False:
-                return HttpResponseRedirect(reverse('analytics:top_100_nouns'))
+                return HttpResponseRedirect(reverse('analytics:top_100_nouns', args=(poet,)))
             # ADJF
             if is_noun==False and is_adjf==True and is_verb==False:
-                return HttpResponseRedirect(reverse('analytics:top_100_adjf'))
+                return HttpResponseRedirect(reverse('analytics:top_100_adjf', args=(poet,)))
             #VERB
             if is_noun==False and is_adjf==False and is_verb==True:
-                return HttpResponseRedirect(reverse('analytics:top_100_verbs'))
+                return HttpResponseRedirect(reverse('analytics:top_100_verbs', args=(poet,)))
             # NOUN AND ADJF
             if is_noun==True and is_adjf==True and is_verb==False:
-                return HttpResponseRedirect(reverse('analytics:top_100_nouns_and_adjf'))
+                return HttpResponseRedirect(reverse('analytics:top_100_nouns_and_adjf', args=(poet,)))
 
 
             if is_noun == True and is_adjf == False and is_verb == True:
-                return HttpResponseRedirect(reverse('analytics:top_100_nouns_and_verbs'))
+                return HttpResponseRedirect(reverse('analytics:top_100_nouns_and_verbs', args=(poet,)))
 
             if is_verb and is_noun==True and is_adjf==True:
-                return HttpResponseRedirect(reverse('analytics:top_100_nouns_and_verbs_and_adjf'))
+                return HttpResponseRedirect(reverse('analytics:top_100_nouns_and_verbs_and_adjf', args=(poet,)))
             if is_verb and is_noun==False and is_adjf==True:
-                return HttpResponseRedirect(reverse('analytics:top_100_verbs_and_adjf'))
+                return HttpResponseRedirect(reverse('analytics:top_100_verbs_and_adjf', args=(poet,)))
             else:
                 return render(request, 'analytics/checkbox.html')
 
@@ -115,7 +115,7 @@ def checkbox_dictionary(request):
     else:
         form = DictionaryFormPartOfSpeech()
 
-        return render(request, 'analytics/checkbox.html', {'form': form})
+        return render(request, 'analytics/checkbox.html', {'form': form, 'poet':poet})
 
 # топ-100 по частям речи
 
@@ -141,8 +141,8 @@ def top_100_words(request):
     return render(request, 'analytics/top_100_words.html',
                   {'result': result,'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
-def top_100_nouns(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_nouns(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
@@ -186,8 +186,9 @@ def top_100_adjf(request):
     return render(request, 'analytics/top_100_adjf.html',
                       {'result': result, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
-def top_100_nouns_and_adjf(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_nouns_and_adjf(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
+    # poems = Poem.objects.all()  # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
@@ -209,8 +210,8 @@ def top_100_nouns_and_adjf(request):
                       {'result': result, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
 
-def top_100_verbs(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_verbs(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
@@ -231,8 +232,8 @@ def top_100_verbs(request):
     return render(request, 'analytics/top_100_verbs.html',
                       {'result': result, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
-def top_100_nouns_and_verbs(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_nouns_and_verbs(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
@@ -253,8 +254,8 @@ def top_100_nouns_and_verbs(request):
     return render(request, 'analytics/top_100_nouns_and_verbs.html',
                       {'result': result, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
-def top_100_nouns_and_verbs_and_adjf(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_nouns_and_verbs_and_adjf(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
@@ -275,8 +276,8 @@ def top_100_nouns_and_verbs_and_adjf(request):
     return render(request, 'analytics/top_100_nouns_and_verbs_and_adjf.html',
                       {'result': result, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
-def top_100_verbs_and_adjf(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_verbs_and_adjf(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet) # все объекты класса Стихи
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []

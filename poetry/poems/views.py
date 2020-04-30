@@ -21,7 +21,7 @@ class PoemView(ListView):
 
 def poems_author(request, poet):
     poem = Poem.objects.filter(poet_name__last_name=poet)
-    paginator = Paginator(poem, 10)  # Show 10 contacts per page.
+    paginator = Paginator(poem, 20)  # Show 10 contacts per page.
     page = request.GET.get('page')
     try:
         poem = paginator.page(page)
