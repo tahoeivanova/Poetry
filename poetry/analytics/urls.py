@@ -31,5 +31,8 @@ urlpatterns = [
     path('top_100_nouns_and_verbs/<poet>/', views.top_100_nouns_and_verbs, name='top_100_nouns_and_verbs'),
     path('top_100_nouns_and_verbs_and_adjf/<poet>/', views.top_100_nouns_and_verbs_and_adjf, name='top_100_nouns_and_verbs_and_adjf'),
     path('top_100_verbs_and_adjf/<poet>/', views.top_100_verbs_and_adjf, name='top_100_verbs_and_adjf'),
+    path('compare_main', views.compare_poets_main, name='compare_main'),
+
+    path('compare_poets', views.compare_poets, name='compare_poets'),
 
 ]

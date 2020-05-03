@@ -1,4 +1,5 @@
 from django.db import models
+from poems.models import Poet
 
 # Create your models here.
 class DictionaryForm(models.Model):
@@ -26,3 +27,4 @@ all_prcl = []  # PRCL частица бы, же, лишь
 all_intj = []  # INTJ междометие
 unknown_part = []  # не определенные pymorphy2 части речи
 '''
+

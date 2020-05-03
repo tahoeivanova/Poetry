@@ -5,6 +5,8 @@
 
 <h4 class="wow zoomIn" style="text-align: center">Toп-100 слов</h4>
 
+<p style="text-align: center">Задайте параметры либо просто нажмите ТОП-100 без указания параметров</p>
+<p style="text-align: center">Анализ может занять до нескольких минут</p>
 
 
 
@@ -15,14 +17,11 @@
     <div class="container-dict">
         <div class="wow fadeInLeft  data-wow-duration="2s"">
             <p style="background-color: rgba(0, 128, 128, 0.4); color: white"> {{form}}</p>
-         </div>
-    <input type="submit" value="Запустить">
-
-</div>
-
+    </div>
+    <br>
+    <p><input type="submit" value="ТОП-100 СЛОВ"></p>
 
 </form>
 
-<p style='margin-left: 20px;'><a  href="{% url 'analytics:top_100_words' %}">Топ-100 всех слов</a></p>
 
 {% endblock %}
