@@ -20,16 +20,19 @@ from . import views
 app_name = 'analytics'
 
 urlpatterns = [
-    path('', views.checkbox_dictionary, name='checkbox'),
+    path('options/<poet>/', views.checkbox_dictionary, name='checkbox'),
     path('dictionary/<int:pk>/', views.poem_dictionary, name='pd'),
     path('all_words_counted/<poet>/', views.all_words_counted, name='all_words_counted'),
     path('top_100_words', views.top_100_words, name='top_100_words'),
-    path('top_100_nouns', views.top_100_nouns, name='top_100_nouns'),
-    path('top_100_adjf', views.top_100_adjf, name='top_100_adjf'),
-    path('top_100_nouns_and_adjf', views.top_100_nouns_and_adjf, name='top_100_nouns_and_adjf'),
-    path('top_100_verbs', views.top_100_verbs, name='top_100_verbs'),
-    path('top_100_nouns_and_verbs', views.top_100_nouns_and_verbs, name='top_100_nouns_and_verbs'),
-    path('top_100_nouns_and_verbs_and_adjf', views.top_100_nouns_and_verbs_and_adjf, name='top_100_nouns_and_verbs_and_adjf'),
-    path('top_100_verbs_and_adjf', views.top_100_verbs_and_adjf, name='top_100_verbs_and_adjf'),
+    path('top_100_nouns/<poet>/', views.top_100_nouns, name='top_100_nouns'),
+    path('top_100_adjf/<poet>/', views.top_100_adjf, name='top_100_adjf'),
+    path('top_100_nouns_and_adjf/<poet>/', views.top_100_nouns_and_adjf, name='top_100_nouns_and_adjf'),
+    path('top_100_verbs/<poet>/', views.top_100_verbs, name='top_100_verbs'),
+    path('top_100_nouns_and_verbs/<poet>/', views.top_100_nouns_and_verbs, name='top_100_nouns_and_verbs'),
+    path('top_100_nouns_and_verbs_and_adjf/<poet>/', views.top_100_nouns_and_verbs_and_adjf, name='top_100_nouns_and_verbs_and_adjf'),
+    path('top_100_verbs_and_adjf/<poet>/', views.top_100_verbs_and_adjf, name='top_100_verbs_and_adjf'),
+    path('compare_main', views.compare_poets_main, name='compare_main'),
+
+    path('compare_poets', views.compare_poets, name='compare_poets'),
 
 ]

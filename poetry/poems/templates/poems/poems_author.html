@@ -5,13 +5,23 @@
 <header>
 
 </header>
+
         <div class="container-1">
+        {% with poet_=p_.poet_name %}
         {% for p in poem %}
+
             <div class="block-main box-flex wow fadeInUp  data-wow-duration="2s">
                 <h3 style="text-align: center"><a href="{% url 'poems:poem_single' pk=p.pk %}">{{p.poem_title}}</a></h3>
                 <p class="text-poem">{{p.poem_text}}</p>
+                <p>{{poet_}}</p>
                 <p>{{p.poem_year}}</p>
-                <p>{{p.poet_name}}</p>
+                <p> Слов в стихе: {{p.poem_words | length}}</p>
+                {% for tag in p.poem_tag.all %}
+            <p>{{tag}}</p>
+                {% endfor %}
+
+
+
                 {% if user.is_superuser %}
                 <p><a href="{% url 'poems:poem_update' pk=p.pk %}">Изменить</a></p>
                 <p><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>
@@ -22,6 +32,7 @@
 
              </div>
         {% endfor %}
+        {% endwith %}
         </div>
 
 

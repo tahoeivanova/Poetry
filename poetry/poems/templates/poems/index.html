@@ -2,20 +2,29 @@
 
 {% extends 'poems/base.html' %}
 {% block content %}
-
-{% for poet in poets %}
-        <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
-        <h4><a href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">{{poet}}</a><h4>
-
-        </div>
-
-{% endfor %}
-
   <div style="text-align: center; padding-bottom: 50px;">
         <a href="{% url 'poems:poems' %}">
         <canvas class="wow rotateIn" data-wow-duration="2s" id="spiralCanvas" width="300" height="300"></canvas>
         </a>
     </div>
+
+
+<div style="text-align: center">
+    {% for poet in poets %}
+        <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
+        <h4><a href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">{{poet}}</a><h4>
+
+        </div>
+
+<ul style="list-style: none;">
+<li><a href="{% url 'poems:poems_pushkin' poet=poet.last_name %}">Стихи</a></li>
+<li><a  href="{% url 'poems:contents_author' poet=poet.last_name %}">Содержание</a></li>
+<li><a  href="{% url 'analytics:checkbox' poet=poet.last_name %}">Аналитика</a></li>
+
+</ul>
+
+{% endfor %}
+</div>
 
 
 

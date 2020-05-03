@@ -20,8 +20,8 @@ class PoemView(ListView):
 # стихи одного автора
 
 def poems_author(request, poet):
-    poem = Poem.objects.filter(poet_name__last_name=poet)
-    paginator = Paginator(poem, 10)  # Show 10 contacts per page.
+    poem = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name=poet)
+    paginator = Paginator(poem, 20)  # Show 10 contacts per page.
     page = request.GET.get('page')
     try:
         poem = paginator.page(page)
@@ -33,7 +33,7 @@ def poems_author(request, poet):
         poem = paginator.page(paginator.num_pages)
 
 
-    return render(request, 'poems/poems_author.html', {'poem': poem})
+    return render(request, 'poems/poems_author.html', {'poem': poem, 'p_':poem[0]})
 
 
 

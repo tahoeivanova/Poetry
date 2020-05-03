@@ -1,0 +1,48 @@
+{% extends 'poems/base.html' %}
+{% block content %}
+<div style="text-align: center">
+<h4 class="wow zoomIn">Meta Poet</h4>
+<p>Compare two poets here</p>
+<table border="1">
+    <caption>Таблица сравнения топ-100 слов</caption>
+    <tr>
+        <th>{{poet1}}, кол-во использований слова, % встречаемости</th>
+        <th>{{poet2}}, кол-во использований слова, % встречаемости</th>
+    </tr>
+    <tr>
+        <td>
+            <div class="words_counts">
+            <ol>
+                {%for res1 in result1%}
+                <li><div class="words_counts_elements">
+                    {% for r in res1%}
+                    <p>{{r}}</p>
+                    {%endfor%}
+                </div></li>
+                {%endfor%}
+
+            </ol>
+            </div>
+        </td>
+
+        <td>
+            <div class="words_counts">
+            <ol>
+               {%for res2 in result2%}
+                <li><div class="words_counts_elements">
+                    {% for r in res2%}
+                    <p>{{r}}</p>
+                    {%endfor%}
+                    </div>
+                </li>
+                {%endfor%}
+            </ol>
+            </div>
+        </td>
+    </tr>
+</table>
+
+</div>
+
+
+{% endblock %}

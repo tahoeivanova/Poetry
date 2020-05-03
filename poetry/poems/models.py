@@ -1,5 +1,7 @@
 from django.db import models
 from analytics.PoetAnalytics import MetaPoet
+from django.utils.functional import cached_property
+
 
 # Create your models here.
 
@@ -31,7 +33,7 @@ class Poet(models.Model):
 
 
 class Poem(models.Model):
-    poem_text = models.TextField(unique=True)
+    poem_text = models.TextField()
     poem_title = models.CharField(max_length=200)
     poem_year = models.CharField(default=' ', max_length=10,null=True, blank=True)
     first_line = models.CharField(max_length=200, null=True, blank=True)
@@ -45,10 +47,12 @@ class Poem(models.Model):
         return f'{self.poem_title}'
 
 
+
 #_____Функция для тестсирования
 #1 количество тэгов у стиха
-    def tag_number(self):
-        return len(self.poem_tag.all())
+    @cached_property
+    def get_all_tags(self):
+        return Tag.objects.all()
 
 #2 есть ли у объекта теги
     def tag_is(self):
@@ -73,5 +77,10 @@ class Poem(models.Model):
         self.words.remove_punctuation()
         self.words.split_words()
         return len(self.words)
+    def poem_words(self):
+        self.words = MetaPoet(str(self.poem_text))
+        self.words.remove_punctuation()
+        self.words.split_words()
+        return self.words
 
 
