@@ -164,8 +164,9 @@ def top_100_nouns(request, poet):
                       {'result': result, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique})
 
 
-def top_100_adjf(request):
-    poems = Poem.objects.all()  # все объекты класса Стихи
+def top_100_adjf(request, poet):
+    poems = Poem.objects.filter(poet_name__last_name=poet)
+
     poems_all = len(poems)
     unique_words_list = []
     lemmed_words = []
