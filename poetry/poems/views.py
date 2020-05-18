@@ -2,12 +2,20 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # Create your views here.
-from .models import Poem
+from .models import Poem, Poet
 from .forms import PoemForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .AudioPoet import AudioPoet
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+# страница о поэте
+def poet_info(request, poet_last_name):
+    poet = Poet.objects.get(last_name=poet_last_name)
+    poems_len = len(Poem.objects.filter(poet_name=poet))
+
+    return render(request, 'poems/poet_info.html', {'poet':poet, 'poems_len':poems_len})
 
 
 # все стихи всех поэтов

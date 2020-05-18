@@ -1,5 +1,6 @@
 from django.db import models
-from poems.models import Poet
+
+
 
 # Create your models here.
 class DictionaryForm(models.Model):
