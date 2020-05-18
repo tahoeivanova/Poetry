@@ -1,4 +1,5 @@
 from gtts.tts import gTTS
+from .models import Poem
 class AudioPoet:
     def __init__(self, text):
         # получаем текст на вход
@@ -10,6 +11,7 @@ class AudioPoet:
         # путь к файлу
         path_name = 'poems/static/poems/'
         # имя файла
+
         mp3_name = '1.mp3'
 
         # Эта строка отправляет текст для озвучивания гуглу

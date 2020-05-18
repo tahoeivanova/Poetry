@@ -46,10 +46,11 @@ footer {
             <span  style="text-align: center">
                 <button type="submit" class="btn-01 btn-light wow jackInTheBox">DARK/LIGHT MODE</button>
             </span>
-        <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
+            <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
 
 
-            <a class="burger-menu__link" href="{% url 'analytics:compare_main' %}">&#10052; Compare poets</a>
+
+<!--            <a class="burger-menu__link" href="{% url 'analytics:compare_main' %}">&#10052; Compare poets</a>-->
             <a class="burger-menu__link" href="{% url 'poems:contents' %}">&#10052; Contents</a>
             {% if user.is_superuser %}
             <a class="burger-menu__link" href="{% url 'poems:poem_add' %}">&#10052; Add</a>

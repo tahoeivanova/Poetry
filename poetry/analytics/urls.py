@@ -20,7 +20,7 @@ from . import views
 app_name = 'analytics'
 
 urlpatterns = [
-    path('options/<poet>/', views.checkbox_dictionary, name='checkbox'),
+    path('options/<poet>/', views.checkbox_dictionary, name='analytics_main'),
     path('dictionary/<int:pk>/', views.poem_dictionary, name='pd'),
     path('all_words_counted/<poet>/', views.all_words_counted, name='all_words_counted'),
     path('top_100_words', views.top_100_words, name='top_100_words'),
