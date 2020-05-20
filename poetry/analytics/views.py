@@ -303,8 +303,8 @@ def compare_poets_main(request):
 
 
 def compare_poets(request):
-    poet1 = Poet.objects.get(last_name='Пушкин')
-    poet2 = Poet.objects.get(last_name='Лермонтов')
+    poet1 = Poet.poets.get(last_name='Пушкин')
+    poet2 = Poet.poets.get(last_name='Лермонтов')
     poems1 = Poem.objects.filter(poet_name__last_name='Пушкин')
     poems2 = Poem.objects.filter(poet_name__last_name='Лермонтов')  # все объекты класса Стихи
 

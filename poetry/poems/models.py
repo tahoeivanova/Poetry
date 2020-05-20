@@ -1,6 +1,8 @@
 from django.db import models
 from analytics.PoetAnalytics import MetaPoet
 from django.utils.functional import cached_property
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 
 # Create your models here.
@@ -29,7 +31,10 @@ from django.utils.functional import cached_property
 #     top_100_adjf = models.TextField('Топ-100 прилагательных')
 
 
-
+class MainPoetManager(models.Manager):
+    def get_queryset(self):
+        all_objects = super().get_queryset()
+        return all_objects.filter(poet_name__last_name='Емельянова')
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=100, default="n/a")
@@ -38,7 +43,8 @@ class Tag(models.Model):
         return f'{self.tag_name}'
 
 class Poet(models.Model):
-    last_name = models.CharField(max_length=100, default='n/a')
+    poets = models.Manager()
+    last_name = models.CharField(max_length=100, default='n/a', db_index=True)
     first_name = models.CharField(max_length=100, default='n/a')
     father_name = models.CharField(max_length=100, null=True, blank=True, default='' )
     poet_img = models.ImageField(upload_to='poems', null=True, blank=True)
@@ -53,6 +59,7 @@ class Poet(models.Model):
 
 
 
+
 class Poem(models.Model):
     poem_text = models.TextField()
     poem_title = models.CharField(max_length=200)
@@ -60,37 +67,13 @@ class Poem(models.Model):
     first_line = models.CharField(max_length=200, null=True, blank=True)
     poem_tag = models.ManyToManyField(Tag)
     poet_name = models.ForeignKey(Poet, on_delete=models.DO_NOTHING)
-    # objects = models.Manager()
+    objects = models.Manager()
+    emelyanova = MainPoetManager()
     # pushkin=PushkinManager()
     # lermontov=LermontovManager()
 
     def __str__(self):
         return f'{self.poem_title}'
-
-
-
-#_____Функция для тестсирования
-#1 количество тэгов у стиха
-    @cached_property
-    def get_all_tags(self):
-        return Tag.objects.all()
-
-#2 есть ли у объекта теги
-    def tag_is(self):
-        if len(self.poem_tag.all()) == 0:
-            return False
-        return True
-
-#3 Если у стиха в названии "* * *", возвращает noname
-    def poem_no_name(self):
-        if self.poem_title == '* * *':
-            return 1
-        return 2
-#4 заполнено ли поле "первая строка"
-    def first_line_is(self):
-        if self.first_line == None:
-            return False
-        return True
 
 #5 количество слов в стихе
     def len_poem_text(self):
@@ -98,10 +81,48 @@ class Poem(models.Model):
         self.words.remove_punctuation()
         self.words.split_words()
         return len(self.words)
+
     def poem_words(self):
         self.words = MetaPoet(str(self.poem_text))
         self.words.remove_punctuation()
         self.words.split_words()
         return self.words
+
+''' CИГНАЛ
+# cигнал модель
+class InfoFile(models.Model):
+    info = models.IntegerField()
+    poem = models.OneToOneField(Poem, on_delete=models.CASCADE)
+
+# сигнал функция
+@receiver(post_save, sender = Poem)
+def create_info(sender, instance, **kwargs):
+    InfoFile.objects.create(poem=instance, info=len_poem_text(instance))
+'''
+
+#_____Функция для тестсирования
+#1 количество тэгов у стиха
+@cached_property
+def get_all_tags(self):
+    return Tag.objects.all()
+
+#2 есть ли у объекта теги
+def tag_is(self):
+    if len(self.poem_tag.all()) == 0:
+        return False
+    return True
+
+#3 Если у стиха в названии "* * *", возвращает noname
+def poem_no_name(self):
+    if self.poem_title == '* * *':
+        return 1
+    return 2
+#4 заполнено ли поле "первая строка"
+def first_line_is(self):
+    if self.first_line == None:
+        return False
+    return True
+
+
 
 

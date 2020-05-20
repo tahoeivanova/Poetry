@@ -16,9 +16,9 @@
                 <p>{{poet_}}</p>
                 <p>{{p.poem_year}}</p>
                 <p> Слов в стихе: {{p.poem_words | length}}</p>
-<!--                {% for tag in p.poem_tag.all %}-->
-<!--            <p>{{tag}}</p>-->
-<!--                {% endfor %}-->
+                <p>{% for tag in p.poem_tag.all %}
+            {{tag}}
+                    {% endfor %}</p>
 
 
 
