@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="keywords" content="стихи, литература">
-    <meta name="description" content="Стихи. Анимированный вывод текста.">
+    <meta name="description" content="Стихи.">
     <title>Poems</title>
     {% load static %}
     <link rel="stylesheet" href='{% static "poems/style.css" %}'>
@@ -47,6 +47,7 @@ footer {
                 <button type="submit" class="btn-01 btn-light wow jackInTheBox">DARK/LIGHT MODE</button>
             </span>
             <a class="burger-menu__link" href="{% url 'home' %}">&#9872; Home</a>
+            <a class="burger-menu__link" href="{% url 'poems:other_poets' %}">&#9872; Other poets</a>
 
 
 

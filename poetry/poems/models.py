@@ -40,12 +40,12 @@ class Tag(models.Model):
 class Poet(models.Model):
     last_name = models.CharField(max_length=100, default='n/a')
     first_name = models.CharField(max_length=100, default='n/a')
-    father_name = models.CharField(max_length=100, default='n/a')
+    father_name = models.CharField(max_length=100, null=True, blank=True, default='' )
     poet_img = models.ImageField(upload_to='poems', null=True, blank=True)
     # poet_dictionary = models.ForeignKey(AnalyticsInfo, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.last_name} {self.first_name} {self.father_name}'
+        return f'{self.last_name} {self.first_name}'
 
 
 

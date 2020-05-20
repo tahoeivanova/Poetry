@@ -21,7 +21,7 @@ from . import views
 app_name = 'poems'
 
 urlpatterns = [
-    path('', views.PoemView.as_view(), name = 'poems'),
+    path('other_poets', views.other_poets, name='other_poets'),
     path('poet/<poet>', views.poems_author, name='poems_author'),
     path('contents/<poet>', views.contents_author, name='contents_author'),
     path('add/', views.poem_add, name='poem_add'),

@@ -10,6 +10,11 @@ from .AudioPoet import AudioPoet
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+def other_poets(request):
+    poets = Poet.objects.all()
+    return render(request, 'poems/other_poets.html', {'poets': poets})
+
+
 # страница о поэте
 def poet_info(request, poet_last_name):
     poet = Poet.objects.get(last_name=poet_last_name)

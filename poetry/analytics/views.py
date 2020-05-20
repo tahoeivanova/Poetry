@@ -60,7 +60,6 @@ def all_words_counted(request, poet):
     return render(request, 'analytics/poet_analytics.html', {'poet':poet, 'poems_all':poems_all,'counter_all': counter_all,'counter_unique':counter_unique, 'result':result,'results_list_words':results_list_words, 'results_list_counts': results_list_counts})
 
 
-@login_required
 def poem_dictionary(request, pk):
     poem_original = get_object_or_404(Poem, pk=pk)
     poem = str(poem_original.poem_text)
@@ -73,7 +72,7 @@ def poem_dictionary(request, pk):
     unique_words_list = meta_poem.unique_words()
     len_unique_words = len(unique_words_list)
     word_list_poem = meta_poem.poem_dictionary()
-    return render(request, 'analytics/poem_dictionary.html', {'len_unique_words':len_unique_words,'len_lemmed_words':len_lemmed_words,'poem': word_list_poem, 'poem_original': poem_original})
+    return render(request, 'analytics/poem_dictionary.html', {'pk':pk, 'len_unique_words':len_unique_words,'len_lemmed_words':len_lemmed_words,'poem': word_list_poem, 'poem_original': poem_original})
 
 
 def checkbox_dictionary(request, poet):

@@ -9,13 +9,12 @@
     </div>
 
 <div style="text-align: center">
-    {% for poet in poets %}
         <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
-        <h4><a href="{% url 'poems:poet_info' poet_last_name=poet.last_name %}">{{poet}}</a><h4>
+        <h4><a href="{% url 'poems:poet_info' poet_last_name=poet.last_name %}">{{poet}}<h4>
+
 
         </div>
 
-{% endfor %}
 </div>
 
 
