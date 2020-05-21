@@ -21,14 +21,18 @@ from django.conf.urls.static import static
 
 
 from rest_framework import routers, serializers, viewsets
-from poems.api_views import TagViewSet, PoemPushkinViewSet, PoemLermontovViewSet, PoemAkhmadulinaViewSet
+from poems.api_views import PoetViewSet, TagViewSet, EmelyanovaPoemViewSet, PoemPushkinViewSet, PoemLermontovViewSet, PoemAkhmadulinaViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register('tag', TagViewSet)
+router.register('poets', PoetViewSet)
+
+router.register('emelyanova', EmelyanovaPoemViewSet, basename='emelyanova')
 router.register('pushkin', PoemPushkinViewSet, basename='pushkin')
 router.register('akhmadulina', PoemAkhmadulinaViewSet, basename='akhmadulina')
 router.register('lermontov', PoemLermontovViewSet, basename='lermontov')
+
 
 
 

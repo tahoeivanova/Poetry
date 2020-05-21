@@ -7,7 +7,7 @@
 
 <div style="text-align: center">
         <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
-        <h4><a href="#">{{poet}}</a><h4>
+        <h4><a href="{% url 'poems:poet_info' poet_last_name=poet.last_name %}">{{poet}}</a><h4>
         </div>
 
 <img src="{{poet.poet_img.url}}" height='300' alt="{{poet}}">

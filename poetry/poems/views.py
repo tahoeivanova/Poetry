@@ -10,9 +10,14 @@ from .AudioPoet import AudioPoet
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+def other_poets(request):
+    poets = Poet.poets.all().exclude(last_name='Емельянова')
+    return render(request, 'poems/other_poets.html', {'poets': poets})
+
+
 # страница о поэте
 def poet_info(request, poet_last_name):
-    poet = Poet.objects.get(last_name=poet_last_name)
+    poet = Poet.poets.get(last_name=poet_last_name)
     poems_len = len(Poem.objects.filter(poet_name=poet))
 
     return render(request, 'poems/poet_info.html', {'poet':poet, 'poems_len':poems_len})
@@ -39,7 +44,6 @@ def poems_author(request, poet):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         poem = paginator.page(paginator.num_pages)
-
 
     return render(request, 'poems/poems_author.html', {'poem': poem, 'p_':poem[0]})
 
@@ -72,7 +76,7 @@ def poem_add(request):
         form = PoemForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('poems:poems'))
+            return HttpResponseRedirect(reverse('home'))
         else:
             return render(request, 'poems/poem_add.html', {'form': form})
 
