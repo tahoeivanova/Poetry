@@ -34,7 +34,7 @@ from django.db.models.signals import post_save
 class MainPoetManager(models.Manager):
     def get_queryset(self):
         all_objects = super().get_queryset()
-        return all_objects.filter(poet_name__last_name='Емельянова')
+        return all_objects.filter(poet_name__custom_id=1)
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=100, default="n/a")
@@ -44,6 +44,7 @@ class Tag(models.Model):
 
 class Poet(models.Model):
     poets = models.Manager()
+    custom_id = models.IntegerField(null=True)
     last_name = models.CharField(max_length=100, default='n/a', db_index=True)
     first_name = models.CharField(max_length=100, default='n/a')
     father_name = models.CharField(max_length=100, null=True, blank=True, default='' )
@@ -51,7 +52,7 @@ class Poet(models.Model):
     # poet_dictionary = models.ForeignKey(AnalyticsInfo, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.last_name} {self.first_name}'
+        return f'{self.first_name} {self.last_name}'
 
 
 

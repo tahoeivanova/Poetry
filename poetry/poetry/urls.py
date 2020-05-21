@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -23,21 +24,28 @@ from django.conf.urls.static import static
 from rest_framework import routers, serializers, viewsets
 from poems.api_views import PoetViewSet, TagViewSet, EmelyanovaPoemViewSet, PoemPushkinViewSet, PoemLermontovViewSet, PoemAkhmadulinaViewSet
 
+
+
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register('tag', TagViewSet)
-router.register('poets', PoetViewSet)
+router.register('emelyanova', EmelyanovaPoemViewSet)
 
-router.register('emelyanova', EmelyanovaPoemViewSet, basename='emelyanova')
-router.register('pushkin', PoemPushkinViewSet, basename='pushkin')
-router.register('akhmadulina', PoemAkhmadulinaViewSet, basename='akhmadulina')
-router.register('lermontov', PoemLermontovViewSet, basename='lermontov')
+router_test_drive = routers.DefaultRouter()
 
 
+router_test_drive.register('poets', PoetViewSet)
+router_test_drive.register('pushkin', PoemPushkinViewSet, basename='pushkin')
+router_test_drive.register('akhmadulina', PoemAkhmadulinaViewSet, basename='akhmadulina')
+router_test_drive.register('lermontov', PoemLermontovViewSet, basename='lermontov')
 
 
 
 
+
+
+
+from users.models import CustomAuthToken
 
 
 urlpatterns = [
@@ -47,6 +55,8 @@ urlpatterns = [
     path('analytics/', include('analytics.urls')),
     path('', views.home_page, name = 'home'),
     path('api/v0/', include(router.urls)),
+    path('api/test_drive/v0/', include(router_test_drive.urls)),
+    path('api_token/', CustomAuthToken.as_view())
 
 
 ]
@@ -63,3 +73,9 @@ if settings.DEBUG:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
 
     ] + urlpatterns
+
+# from rest_framework.authtoken import views
+#
+# urlpatterns += [
+#     path('api_token/', views.obtain_auth_token)
+# ]

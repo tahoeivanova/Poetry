@@ -25,5 +25,8 @@ urlpatterns = [
     path('login/', views.UserLoginView.as_view(), name = 'login'),
     path('register/', views.UserCreateView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('token_options/', views.get_token, name='token_options'),
+    path('get_token/', views.get_token, name='get_token'),
+    path('update_token/', views.update_token, name='update_token'),
 
 ]

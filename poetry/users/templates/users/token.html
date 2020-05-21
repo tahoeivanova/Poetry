@@ -1,0 +1,20 @@
+{% extends "poems/base.html" %}
+
+{% block content %}
+<div class="form-div" style="text-align: center;">
+    <p>Ваше имя: {{user}} </p>
+    <p>Ваш e-mail: {{email}} </p>
+
+
+    <p>Ваш токен: {{token}}</p>
+    </br>
+    </br>
+    </br>
+
+    <p>Вы можете обновить токен</p>
+    <form action="/users/update_token/" method="post">
+        {% csrf_token %}
+        <button type="submit">Обновить Токен</button>
+    </form>
+</div>
+{% endblock %}
