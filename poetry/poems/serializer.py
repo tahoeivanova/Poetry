@@ -16,16 +16,27 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 class PoemSerializer(serializers.HyperlinkedModelSerializer):
+
     poem_tag = serializers.StringRelatedField(many=True)
+    poet_name = serializers.StringRelatedField(many=False)
 
     class Meta:
         model = Poem
-        fields = ['poem_title', 'poem_text', 'poem_year', 'poem_tag']
+        # exclude = ['url']
+        fields = ['pk', 'poet_name', 'poem_title', 'poem_text', 'poem_year', 'poem_tag', ]
+        # extra_kwargs = {
+        #     'url': {'view_name': 'poem-detail', 'lookup_field': 'pk'},
+        # }
+
 
 class EmelyanovaPoemSerializer(serializers.HyperlinkedModelSerializer):
     poem_tag = serializers.StringRelatedField(many=True)
-
+    poet_name = serializers.StringRelatedField(many=False)
     class Meta:
         model = Poem
-        fields = ['poem_title', 'poem_text', 'poem_tag']
+        fields = '__all__'
+        extra_kwargs = {
+            'url': {'view_name': 'poem-detail', 'lookup_field': 'pk'},
+        }
+
 

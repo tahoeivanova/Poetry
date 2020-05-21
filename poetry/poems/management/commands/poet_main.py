@@ -7,6 +7,14 @@ import pprint
 
 class Command(BaseCommand):
     def handle(self, *args, ** options):
+
+        # запросить поэта, задать кастомный номер 1
+        # ВЫПОЛНЕНО
+
+        # poet = Poet.poets.get(last_name="Емельянова")
+        # poet.custom_id=1
+        # poet.save()
+
         # создать имя/фамилию поэта
         # ВЫПОЛНЕНО
         # Poet.objects.create(last_name="Емельянова", first_name="Клара" )

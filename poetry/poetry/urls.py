@@ -29,12 +29,16 @@ from poems.api_views import PoetViewSet, TagViewSet, EmelyanovaPoemViewSet, Poem
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register('tag', TagViewSet)
-router.register('poets', PoetViewSet)
+router.register('emelyanova', EmelyanovaPoemViewSet)
 
-router.register('emelyanova', EmelyanovaPoemViewSet, basename='emelyanova')
-router.register('pushkin', PoemPushkinViewSet, basename='pushkin')
-router.register('akhmadulina', PoemAkhmadulinaViewSet, basename='akhmadulina')
-router.register('lermontov', PoemLermontovViewSet, basename='lermontov')
+router_test_drive = routers.DefaultRouter()
+
+
+router_test_drive.register('poets', PoetViewSet)
+router_test_drive.register('pushkin', PoemPushkinViewSet, basename='pushkin')
+router_test_drive.register('akhmadulina', PoemAkhmadulinaViewSet, basename='akhmadulina')
+router_test_drive.register('lermontov', PoemLermontovViewSet, basename='lermontov')
+
 
 
 
@@ -51,6 +55,7 @@ urlpatterns = [
     path('analytics/', include('analytics.urls')),
     path('', views.home_page, name = 'home'),
     path('api/v0/', include(router.urls)),
+    path('api/test_drive/v0/', include(router_test_drive.urls)),
     path('api_token/', CustomAuthToken.as_view())
 
 

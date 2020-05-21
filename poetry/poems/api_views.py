@@ -21,6 +21,7 @@ class TagViewSet(viewsets.ModelViewSet):
 
 class EmelyanovaPoemViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser | ReadOnly]
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     queryset = Poem.emelyanova.prefetch_related('poem_tag').all()
     serializer_class = EmelyanovaPoemSerializer
 
@@ -37,5 +38,7 @@ class PoemLermontovViewSet(viewsets.ModelViewSet):
 
 class PoemAkhmadulinaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser | ReadOnly]
+    authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
+
     queryset = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name='Ахмадулина')
     serializer_class = PoemSerializer

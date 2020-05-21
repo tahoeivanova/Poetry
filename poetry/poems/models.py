@@ -34,7 +34,7 @@ from django.db.models.signals import post_save
 class MainPoetManager(models.Manager):
     def get_queryset(self):
         all_objects = super().get_queryset()
-        return all_objects.filter(poet_name__last_name='Емельянова')
+        return all_objects.filter(poet_name__custom_id=1)
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=100, default="n/a")
@@ -44,6 +44,7 @@ class Tag(models.Model):
 
 class Poet(models.Model):
     poets = models.Manager()
+    custom_id = models.IntegerField(null=True)
     last_name = models.CharField(max_length=100, default='n/a', db_index=True)
     first_name = models.CharField(max_length=100, default='n/a')
     father_name = models.CharField(max_length=100, null=True, blank=True, default='' )
