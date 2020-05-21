@@ -22,23 +22,23 @@ class TagViewSet(viewsets.ModelViewSet):
 class EmelyanovaPoemViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser | ReadOnly]
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
-    queryset = Poem.emelyanova.prefetch_related('poem_tag').all()
+    queryset = Poem.emelyanova.prefetch_related('poem_tag', 'poet_name').all()
     serializer_class = EmelyanovaPoemSerializer
 
 
 class PoemPushkinViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser | ReadOnly]
-    queryset = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name='Пушкин')
+    queryset = Poem.objects.prefetch_related('poem_tag', 'poet_name').filter(poet_name__last_name='Пушкин')
     serializer_class = PoemSerializer
 
 class PoemLermontovViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser | ReadOnly]
-    queryset = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name='Лермонтов')
+    queryset = Poem.objects.prefetch_related('poem_tag', 'poet_name').filter(poet_name__last_name='Лермонтов')
     serializer_class = PoemSerializer
 
 class PoemAkhmadulinaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminUser | ReadOnly]
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
 
-    queryset = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name='Ахмадулина')
+    queryset = Poem.objects.prefetch_related('poem_tag', 'poet_name').filter(poet_name__last_name='Ахмадулина')
     serializer_class = PoemSerializer
