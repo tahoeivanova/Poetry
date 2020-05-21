@@ -6,7 +6,8 @@ from poems.models import Poem, Poet
 
 
 def home_page(request):
-    poet = Poet.poets.filter(last_name='Емельянова').first()
+    poems = Poem.emelyanova.all()
+    poet = poems[0].poet_name
 
-    return render(request, 'poems/index.html', {'poet': poet})
+    return render(request, 'poems/index.html', {'poet': poet, 'poems':poems})
 

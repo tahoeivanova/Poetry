@@ -1,11 +1,13 @@
 {% extends "poems/base.html" %}
 
 {% block content %}
-
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Зарегистрироваться</button>
-</form>
+<div class="form-div">
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_ul}}
+        <br>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
 
 {% endblock %}

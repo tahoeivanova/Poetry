@@ -10,7 +10,13 @@
 
 <div style="text-align: center">
         <div style="text-align: center" class="wow fadeInLeft  data-wow-duration="2s">
-        <h4><a href="{% url 'poems:poet_info' poet_last_name=poet.last_name %}">{{poet}}<h4>
+
+
+
+            <h4><a href="{% url 'poems:poems_author' poet=poet.last_name%}">Стихи</a></h4>
+            <h4><a  href="{% url 'poems:contents_author' poet=poet.last_name%}">Содержание</a></h4>
+            <h4><a  href="{% url 'analytics:analytics_main' poet=poet.last_name%}">Аналитика</a></h4>
+
 
 
         </div>

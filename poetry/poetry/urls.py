@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from . import views
@@ -22,6 +23,8 @@ from django.conf.urls.static import static
 
 from rest_framework import routers, serializers, viewsets
 from poems.api_views import PoetViewSet, TagViewSet, EmelyanovaPoemViewSet, PoemPushkinViewSet, PoemLermontovViewSet, PoemAkhmadulinaViewSet
+
+
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -38,6 +41,7 @@ router.register('lermontov', PoemLermontovViewSet, basename='lermontov')
 
 
 
+from users.models import CustomAuthToken
 
 
 urlpatterns = [
@@ -47,6 +51,7 @@ urlpatterns = [
     path('analytics/', include('analytics.urls')),
     path('', views.home_page, name = 'home'),
     path('api/v0/', include(router.urls)),
+    path('api_token/', CustomAuthToken.as_view())
 
 
 ]
@@ -63,3 +68,9 @@ if settings.DEBUG:
         # url(r'^__debug__/', include(debug_toolbar.urls)),
 
     ] + urlpatterns
+
+# from rest_framework.authtoken import views
+#
+# urlpatterns += [
+#     path('api_token/', views.obtain_auth_token)
+# ]

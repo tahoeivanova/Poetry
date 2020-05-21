@@ -11,7 +11,7 @@
         {% for p in poem %}
 
             <div class="block-main box-flex wow fadeInUp  data-wow-duration="2s">
-                <h3 style="text-align: center"><a href="{% url 'poems:poem_single' pk=p.pk %}">{{p.poem_title}}</a></h3>
+                <h3 style="text-align: center"><a href="{% url 'analytics:pd' pk=p.pk %}">{{p.poem_title}}</a></h3>
                 <p class="text-poem">{{p.poem_text}}</p>
                 <p>{{poet_}}</p>
                 <p>{{p.poem_year}}</p>
