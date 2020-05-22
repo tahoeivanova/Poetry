@@ -12,7 +12,11 @@
 
             <div class="block-main box-flex wow fadeInUp  data-wow-duration="2s">
                 <h3 style="text-align: center"><a href="{% url 'analytics:pd' pk=p.pk %}">{{p.poem_title}}</a></h3>
-                <p class="text-poem">{{p.poem_text}}</p>
+                <p class="text-poem" style="text-align: center">{{p.poem_text}}</p>
+            {% if p.poem_img %}
+<!--            <p style="text-align: center"><img src="{{p.poem_img.url}}" height='250' alt="{{p.poem_title}}">-->
+<!--            </p>-->
+                {% endif %}
                 <p>{{poet_}}</p>
                 <p>{{p.poem_year}}</p>
                 <p> Слов в стихе: {{p.poem_words | length}}</p>
@@ -23,12 +27,12 @@
 
 
                 {% if user.is_superuser %}
-                <p><a href="{% url 'poems:poem_update' pk=p.pk %}">Изменить</a></p>
-                <p><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>
-                <p><a href="{% url 'poems:poem_add' %}">Добавить стих</a></p>
+                <p style="text-align: right"><a href="{% url 'poems:poem_update' pk=p.pk %}">Изменить</a></p>
+                <p style="text-align: right"><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>
+                <p style="text-align: right"><a href="{% url 'poems:poem_add' %}">Добавить стих</a></p>
                 {% endif %}
-                <p><a href="{% url 'poems:audio' pk=p.pk %}">Аудио</a></p>
-                <p><a href="{% url 'analytics:pd' pk=p.pk %}">Словарь стихотворения</a></p>
+                <p style="text-align: right"><a href="{% url 'poems:audio' pk=p.pk %}">Аудио</a></p>
+                <p style="text-align: right"><a href="{% url 'analytics:pd' pk=p.pk %}">Словарь стихотворения</a></p>
 
              </div>
         {% endfor %}

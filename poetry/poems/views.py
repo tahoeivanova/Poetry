@@ -11,7 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def other_poets(request):
-    poets = Poet.poets.all().exclude(last_name='Емельянова')
+    poets = Poet.poets.all().exclude(custopm_id=1)
     return render(request, 'poems/other_poets.html', {'poets': poets})
 
 
@@ -34,7 +34,7 @@ class PoemView(ListView):
 
 def poems_author(request, poet):
     poem = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name=poet)
-    paginator = Paginator(poem, 20)  # Show 10 contacts per page.
+    paginator = Paginator(poem, 15)  # Show 15 contacts per page.
     page = request.GET.get('page')
     try:
         poem = paginator.page(page)
@@ -53,6 +53,7 @@ class ContentsView(ListView):
     model = Poem
     template_name = 'poems/contents.html'
     context_object_name = 'poem'
+
 # содержание по одному автору
 
 def contents_author(request, poet):
@@ -64,7 +65,7 @@ class PoemUpdateView(UpdateView):
     model = Poem
     template_name = 'poems/poem_update.html'
     fields = '__all__'
-    success_url = reverse_lazy('poems:poems')
+    success_url = reverse_lazy('home')
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -73,7 +74,7 @@ def poem_add(request):
         form = PoemForm
         return render(request, 'poems/poem_add.html', {'form': form})
     else:
-        form = PoemForm(request.POST)
+        form = PoemForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('home'))
@@ -92,13 +93,17 @@ class PoemDeleteView(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.request.user.is_superuser
+
     def handle_no_permission(self):
         return HttpResponseRedirect(reverse('home'))
 
 def audio_poem(request, pk):
+
     poem = get_object_or_404(Poem, pk=pk)
-    title = poem.poem_title
     text = str(poem.poem_text)
     a = AudioPoet(text)
     a.audio()
-    return render(request, 'poems/poem_audio.html', {'title': title})
+    poem.poem_audio = 'poems/audio/1.mp3'
+    poem.save()
+
+    return render(request, 'poems/poem_audio.html', {'poem': poem})

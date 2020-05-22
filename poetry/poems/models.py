@@ -56,18 +56,16 @@ class Poet(models.Model):
 
 
 
-
-
-
-
-
 class Poem(models.Model):
     poem_text = models.TextField()
     poem_title = models.CharField(max_length=200)
     poem_year = models.CharField(default=' ', max_length=10,null=True, blank=True)
     first_line = models.CharField(max_length=200, null=True, blank=True)
-    poem_tag = models.ManyToManyField(Tag)
+    poem_tag = models.ManyToManyField(Tag, blank=True)
     poet_name = models.ForeignKey(Poet, on_delete=models.DO_NOTHING)
+    poem_audio = models.FileField(upload_to='poems/audio', null=True, blank=True)
+    poem_img = models.ImageField(upload_to='poems', null=True, blank=True)
+
     objects = models.Manager()
     emelyanova = MainPoetManager()
     # pushkin=PushkinManager()
