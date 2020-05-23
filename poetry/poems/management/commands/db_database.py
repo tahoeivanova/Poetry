@@ -2,12 +2,14 @@ from django.core.management.base import BaseCommand
 from poems.models import Poem, Tag, Poet
 import re
 import pandas as pd
+from django.db.models import F
 
 
 
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
+
         # 1_______Добавление автора________on_delete=models.Cascade
         # ВЫПОЛНЕНО
         # p = Poet.objects.create(last_name='Ахмадулина', first_name='Белла', father_name='Ахатовна')
@@ -37,11 +39,17 @@ class Command(BaseCommand):
 
         # 3________Изменение поля poem_year с nan на пробел________
         # ВЫПОЛНЕНО
-        # poems = Poem.objects.filter(poem_year='nan')
+        # poems = Poem.objects.filter(poem_year='None')
         # for poem in poems:
         #     poem.poem_year = ''
         #     poem.save()
-        #     print(poem, poem.poem_year)
+
+        # ВЫПОЛНЕНО
+        # poems = Poem.emelyanova.all()
+        # for poem in poems:
+        #     poem.poem_year = ''
+        #     poem.save()
+        #
 
         # 4________Добавление первой строки в объект базы данных________
         # ВЫПОЛНЕНО

@@ -9,7 +9,8 @@ class AudioPoet:
 
     def audio(self):
         # путь к файлу
-        path_name = 'poems/static/poems/'
+        path_name = 'media/poems/audio/'
+
         # имя файла
 
         mp3_name = '1.mp3'
