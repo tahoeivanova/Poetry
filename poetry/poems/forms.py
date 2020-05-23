@@ -7,4 +7,5 @@ class PoemForm(forms.ModelForm):
 
     class Meta:
         model = Poem
-        fields = '__all__'
+        # fields = '__all__'
+        exclude = ['poem_audio','poem_img']

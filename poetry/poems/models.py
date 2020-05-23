@@ -30,19 +30,24 @@ from django.db.models.signals import post_save
 #     top_100_verbs = models.TextField('Топ-100 глаголов')
 #     top_100_adjf = models.TextField('Топ-100 прилагательных')
 
+class IsActiveMixin(models.Model):
+    is_active = models.BooleanField(default=True)
+    class Meta:
+        abstract = True
+
 
 class MainPoetManager(models.Manager):
     def get_queryset(self):
         all_objects = super().get_queryset()
-        return all_objects.filter(poet_name__custom_id=1)
+        return all_objects.filter(poet_name__custom_id=1, is_active=True)
 
-class Tag(models.Model):
+class Tag(IsActiveMixin, models.Model):
     tag_name = models.CharField(max_length=100, default="n/a")
 
     def __str__(self):
         return f'{self.tag_name}'
 
-class Poet(models.Model):
+class Poet(IsActiveMixin, models.Model):
     poets = models.Manager()
     custom_id = models.IntegerField(null=True)
     last_name = models.CharField(max_length=100, default='n/a', db_index=True)
@@ -56,7 +61,7 @@ class Poet(models.Model):
 
 
 
-class Poem(models.Model):
+class Poem(IsActiveMixin, models.Model):
     poem_text = models.TextField()
     poem_title = models.CharField(max_length=200)
     poem_year = models.CharField(default=' ', max_length=10,null=True, blank=True)

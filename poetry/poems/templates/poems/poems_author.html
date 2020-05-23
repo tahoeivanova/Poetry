@@ -18,7 +18,9 @@
 <!--            </p>-->
                 {% endif %}
                 <p>{{poet_}}</p>
+            {% if p.poem_year %}
                 <p>{{p.poem_year}}</p>
+            {% endif %}
                 <p> Слов в стихе: {{p.poem_words | length}}</p>
                 <p>{% for tag in p.poem_tag.all %}
             {{tag}}
@@ -29,10 +31,10 @@
                 {% if user.is_superuser %}
                 <p style="text-align: right"><a href="{% url 'poems:poem_update' pk=p.pk %}">Изменить</a></p>
                 <p style="text-align: right"><a href="{% url 'poems:poem_delete' pk=p.pk %}">Удалить</a></p>
-                <p style="text-align: right"><a href="{% url 'poems:poem_add' %}">Добавить стих</a></p>
+<!--                <p style="text-align: right"><a href="{% url 'poems:poem_add' %}" target="_blank">Добавить стих</a></p>-->
                 {% endif %}
-                <p style="text-align: right"><a href="{% url 'poems:audio' pk=p.pk %}">Аудио</a></p>
-                <p style="text-align: right"><a href="{% url 'analytics:pd' pk=p.pk %}">Словарь стихотворения</a></p>
+                <p style="text-align: right"><a href="{% url 'poems:audio' pk=p.pk %}" target="_blank">Аудио</a></p>
+                <p style="text-align: right"><a href="{% url 'analytics:pd' pk=p.pk %}" target="_blank">Словарь стихотворения</a></p>
 
              </div>
         {% endfor %}

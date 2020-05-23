@@ -11,7 +11,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def other_poets(request):
-    poets = Poet.poets.all().exclude(custopm_id=1)
+    poets = Poet.poets.all().exclude(custom_id=1).filter(is_active=True)
     return render(request, 'poems/other_poets.html', {'poets': poets})
 
 
@@ -33,7 +33,7 @@ class PoemView(ListView):
 # стихи одного автора
 
 def poems_author(request, poet):
-    poem = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name=poet)
+    poem = Poem.objects.prefetch_related('poem_tag').filter(poet_name__last_name=poet).filter(is_active=True)
     paginator = Paginator(poem, 15)  # Show 15 contacts per page.
     page = request.GET.get('page')
     try:
@@ -54,6 +54,9 @@ class ContentsView(ListView):
     template_name = 'poems/contents.html'
     context_object_name = 'poem'
 
+    def get_queryset(self):
+        return Poem.objects.filter(is_active=True)
+
 # содержание по одному автору
 
 def contents_author(request, poet):
@@ -64,7 +67,7 @@ def contents_author(request, poet):
 class PoemUpdateView(UpdateView):
     model = Poem
     template_name = 'poems/poem_update.html'
-    fields = '__all__'
+    fields = ['is_active','poem_title', 'poem_text', 'poem_year', 'first_line', 'poem_tag', 'poet_name']
     success_url = reverse_lazy('home')
 
 

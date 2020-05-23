@@ -59,10 +59,13 @@ html, body {
     width: 100%;
     color: white;
     text-align: center;
-    text-transform: uppercase;
     font-weight: bold;
     position: absolute;
 }
+
+.light-theme .footer-class a {
+    color: white;
+    }
 
 .light-theme .btn-01 {
     color: pink;
@@ -129,7 +132,6 @@ html, body {
     color: white;
     width: 100%;
     text-align: center;
-    text-transform: uppercase;
     font-weight: bold;
     position: absolute;
 }
