@@ -47,17 +47,11 @@ footer {
                 <button type="submit" class="btn-01 btn-light wow jackInTheBox">DARK/LIGHT MODE</button>
             </span>
             <a class="burger-menu__link" href="{% url 'home' %}">&cir; Home</a>
-            <a class="burger-menu__link" href="{% url 'poems:contents' %}">&#10052; Contents</a>
             <a class="burger-menu__link" href="/api/v0/">&EmptySmallSquare; API</a>
             {% if user.is_authenticated %}
             <a class="burger-menu__link" href="{% url 'users:get_token' %}">&#9872; Token</a>
             {% endif %}
-            <a class="burger-menu__link" href="{% url 'poems:other_poets' %}">&xdtri; Test-drive</a>
-            <a class="burger-menu__link" href="api/test_drive/v0/">&xdtri; API Test-drive</a>
 
-
-
-<!--            <a class="burger-menu__link" href="{% url 'analytics:compare_main' %}">&#10052; Compare poets</a>-->
             {% if user.is_superuser %}
             <a class="burger-menu__link" href="{% url 'poems:poem_add' %}">&#10052; Add</a>
             {% endif %}

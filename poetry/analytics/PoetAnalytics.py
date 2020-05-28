@@ -180,3 +180,69 @@ class MetaPoet:
         'предлог': all_prep, 'союз': all_conj, 'частица': all_prcl, 'междометие': all_intj}
 
         return self.all_parts_of_speech
+
+
+
+
+# функция подсчета слов
+def words_counter(poems):
+    poems_all = len(poems)
+    lemmed_words = []
+    counter_all = 0
+    counter_unique = 0
+    for poem in poems:
+        poem = str(poem.poem_text)
+        meta_poem = MetaPoet(poem)  # создаем объект класса MetaPoet, куда передаем стихи
+        meta_poem.remove_punctuation()
+        meta_poem.split_words()
+        counter_all += len(meta_poem)
+        meta_poem.lower_case()
+        lemmed_words += meta_poem.lemma()  # список всех лемматизированных слов
+        meta_poem.unique_words()
+        counter_unique += len(meta_poem)
+
+    morph = pymorphy2.MorphAnalyzer()
+    # список топ 100 из существительных, глаголов и др
+    lemmed_words = [word for word in lemmed_words if
+                    morph.parse(word)[0].tag.POS == 'NOUN' or morph.parse(word)[0].tag.POS == 'INFN' or
+                    morph.parse(word)[0].tag.POS == 'ADJF' or morph.parse(word)[0].tag.POS == 'ADJS' or
+                    morph.parse(word)[0].tag.POS == 'PRTF' or morph.parse(word)[0].tag.POS == 'GRND' or
+                    morph.parse(word)[0].tag.POS == 'ADVB' or morph.parse(word)[0].tag.POS == 'NPRO']
+
+    c = collections.Counter(lemmed_words)
+    result = c.most_common(100)
+
+    #  вывод кортежа
+
+    # преобразовываем список кортежей в списки (слова и количество употреблений)
+
+    results_list_words = []
+    results_list_counts = []
+
+    for tuple_ in result:
+        for i in range(len(tuple_)):
+            if i == 0:
+                results_list_words.append(tuple_[i])
+            if i == 1:
+                results_list_counts.append(tuple_[i])
+    return poems_all, counter_all, counter_unique, result, results_list_words,  results_list_counts
+
+def top_100(poems):
+    poems_all = len(poems)
+    lemmed_words = []
+    counter_all = 0
+    counter_unique = 0
+    for poem in poems:
+        poem = str(poem.poem_text)
+        meta_poem = MetaPoet(poem)  # создаем объект класса MetaPoet, куда передаем стихи
+        meta_poem.remove_punctuation()
+        meta_poem.split_words()
+        counter_all += len(meta_poem)
+        meta_poem.lower_case()
+        lemmed_words += meta_poem.lemma()  # список всех лемматизированных слов
+        meta_poem.unique_words()
+        counter_unique += len(meta_poem)
+    all_lemmed_words = MetaPoet(lemmed_words)
+    return poems_all, counter_all,counter_unique, all_lemmed_words
+
+
