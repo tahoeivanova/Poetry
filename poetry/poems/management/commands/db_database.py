@@ -1,8 +1,7 @@
-from django.core.management.base import BaseCommand
-from poems.models import Poem, Tag, Poet
-import re
-import pandas as pd
-from django.db.models import F
+# from django.core.management.base import BaseCommand
+# from poems.models import Poem, Tag, Poet
+# import re
+# from django.db.models import F
 
 
 
