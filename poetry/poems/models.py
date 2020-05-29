@@ -5,31 +5,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-# Create your models here.
-
-# менеджеры моделей
-# class PushkinManager(models.Manager):
-#     def get_queryset(self):
-#         all_objects = super().get_queryset()
-#         return all_objects.filter(poet_name__last_name='Пушкин')
-#
-# class LermontovManager(models.Manager):
-#     def get_queryset(self):
-#         all_objects = super().get_queryset()
-#         return all_objects.filter(poet_name__last_name='Лермонтов')
-
-
-# class AnalyticsInfo(models.Model):
-#     poems_amount = models.IntegerField() # количество стихов
-#     # all_words_lemmed = models.TextField() # все слова (лемматизированные)
-#     # unique_words = models.TextField(unique=True) # только уникальные слова
-#     all_words_amount = models.IntegerField() # количество всех слов
-#     unique_words_amount = models.IntegerField() # количество уникальных слов
-#     top_100_words = models.TextField('Топ-100 слов')
-#     top_100_nouns = models.TextField('Топ-100 существительных')
-#     top_100_verbs = models.TextField('Топ-100 глаголов')
-#     top_100_adjf = models.TextField('Топ-100 прилагательных')
-
 class IsActiveMixin(models.Model):
     is_active = models.BooleanField(default=True)
     class Meta:
@@ -54,7 +29,6 @@ class Poet(IsActiveMixin, models.Model):
     first_name = models.CharField(max_length=100, default='n/a')
     father_name = models.CharField(max_length=100, null=True, blank=True, default='' )
     poet_img = models.ImageField(upload_to='poems', null=True, blank=True)
-    # poet_dictionary = models.ForeignKey(AnalyticsInfo, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -67,14 +41,13 @@ class Poem(IsActiveMixin, models.Model):
     poem_year = models.CharField(default=' ', max_length=10,null=True, blank=True)
     first_line = models.CharField(max_length=200, null=True, blank=True)
     poem_tag = models.ManyToManyField(Tag, blank=True)
-    poet_name = models.ForeignKey(Poet, on_delete=models.DO_NOTHING)
+    poet_name = models.ForeignKey(Poet, on_delete=models.CASCADE)
     poem_audio = models.FileField(upload_to='poems/audio', null=True, blank=True)
     poem_img = models.ImageField(upload_to='poems', null=True, blank=True)
 
     objects = models.Manager()
     emelyanova = MainPoetManager()
-    # pushkin=PushkinManager()
-    # lermontov=LermontovManager()
+
 
     def __str__(self):
         return f'{self.poem_title}'
@@ -92,17 +65,6 @@ class Poem(IsActiveMixin, models.Model):
         self.words.split_words()
         return self.words
 
-''' CИГНАЛ
-# cигнал модель
-class InfoFile(models.Model):
-    info = models.IntegerField()
-    poem = models.OneToOneField(Poem, on_delete=models.CASCADE)
-
-# сигнал функция
-@receiver(post_save, sender = Poem)
-def create_info(sender, instance, **kwargs):
-    InfoFile.objects.create(poem=instance, info=len_poem_text(instance))
-'''
 
 #_____Функция для тестсирования
 #1 количество тэгов у стиха

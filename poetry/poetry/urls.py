@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 
 from rest_framework import routers, serializers, viewsets
-from poems.api_views import PoetViewSet, TagViewSet, EmelyanovaPoemViewSet, PoemPushkinViewSet, PoemLermontovViewSet, PoemAkhmadulinaViewSet
+from poems.api_views import TagViewSet, EmelyanovaPoemViewSet
 
 
 
@@ -31,13 +31,6 @@ router = routers.DefaultRouter()
 router.register('tag', TagViewSet)
 router.register('emelyanova', EmelyanovaPoemViewSet)
 
-router_test_drive = routers.DefaultRouter()
-
-
-router_test_drive.register('poets', PoetViewSet)
-router_test_drive.register('pushkin', PoemPushkinViewSet, basename='pushkin')
-router_test_drive.register('akhmadulina', PoemAkhmadulinaViewSet, basename='akhmadulina')
-router_test_drive.register('lermontov', PoemLermontovViewSet, basename='lermontov')
 
 
 
@@ -55,7 +48,6 @@ urlpatterns = [
     path('analytics/', include('analytics.urls')),
     path('', views.home_page, name = 'home'),
     path('api/v0/', include(router.urls)),
-    path('api/test_drive/v0/', include(router_test_drive.urls)),
     path('api_token/', CustomAuthToken.as_view())
 
 
