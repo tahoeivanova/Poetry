@@ -1,15 +1,14 @@
+import re
 from django.db import models
 from analytics.PoetAnalytics import MetaPoet
 from django.utils.functional import cached_property
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-
 class IsActiveMixin(models.Model):
     is_active = models.BooleanField(default=True)
     class Meta:
         abstract = True
-
 
 class MainPoetManager(models.Manager):
     def get_queryset(self):
@@ -35,18 +34,23 @@ class Poet(IsActiveMixin, models.Model):
 
 
 
+
 class Poem(IsActiveMixin, models.Model):
     poem_text = models.TextField()
     poem_title = models.CharField(max_length=200)
-    poem_year = models.CharField(default=' ', max_length=10,null=True, blank=True)
+    poem_year = models.CharField(max_length=10,null=True, blank=True)
     first_line = models.CharField(max_length=200, null=True, blank=True)
     poem_tag = models.ManyToManyField(Tag, blank=True)
-    poet_name = models.ForeignKey(Poet, on_delete=models.CASCADE)
+    poet_name = models.ForeignKey(Poet, on_delete=models.CASCADE, default=1)
     poem_audio = models.FileField(upload_to='poems/audio', null=True, blank=True)
     poem_img = models.ImageField(upload_to='poems', null=True, blank=True)
 
     objects = models.Manager()
     emelyanova = MainPoetManager()
+
+
+    class Meta:
+        ordering = ['-id']
 
 
     def __str__(self):
@@ -89,6 +93,20 @@ def first_line_is(self):
         return False
     return True
 
+class Firstline(models.Model):
+    first_line_signal = models.CharField(max_length=200, null=True, blank=True)
+    poem = models.OneToOneField(Poem, on_delete=models.CASCADE, primary_key=True)
+
+    def __str__(self):
+        return f'{self.first_line_signal}'
 
 
 
+
+@receiver(post_save, sender=Poem)
+def create_first_line(sender, instance, **kwargs):
+    text = instance.poem_text
+    str_add = text.split('\n')[0]
+    # instance.first_line = str_add
+    # instance.save()
+    Firstline.objects.create(poem=instance, first_line_signal=str_add)
