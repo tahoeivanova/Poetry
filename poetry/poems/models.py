@@ -53,6 +53,8 @@ class Poem(IsActiveMixin, models.Model):
         ordering = ['-id']
 
 
+
+
     def __str__(self):
         return f'{self.poem_title}'
 
@@ -93,20 +95,23 @@ def first_line_is(self):
         return False
     return True
 
-class Firstline(models.Model):
-    first_line_signal = models.CharField(max_length=200, null=True, blank=True)
-    poem = models.OneToOneField(Poem, on_delete=models.CASCADE, primary_key=True)
-
-    def __str__(self):
-        return f'{self.first_line_signal}'
 
 
+# вариант сигнала - сохранение первой строки в поле 'firstline' для отображения в содержании
+# class Firstline(models.Model):
+#     first_line_signal = models.CharField(max_length=200, null=True, blank=True)
+#     poem = models.OneToOneField(Poem, on_delete=models.CASCADE, primary_key=True)
+#
+#     def __str__(self):
+#         return f'{self.first_line_signal}'
 
 
-@receiver(post_save, sender=Poem)
-def create_first_line(sender, instance, **kwargs):
-    text = instance.poem_text
-    str_add = text.split('\n')[0]
-    # instance.first_line = str_add
-    # instance.save()
-    Firstline.objects.create(poem=instance, first_line_signal=str_add)
+#
+#
+# @receiver(post_save, sender=Poem)
+# def create_first_line(sender, instance, **kwargs):
+#     text = instance.poem_text
+#     str_add = text.split('\n')[0]
+#     # instance.first_line = str_add
+#     # instance.save()
+#     Firstline.objects.create(poem=instance, first_line_signal=str_add)
