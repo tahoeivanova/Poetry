@@ -15,9 +15,6 @@ def set_active(modeladmin, request, queryset):
     queryset.update(is_active = True)
 
 
-
-
-
 # администрирование модели в админ
 class PoemAdmin(admin.ModelAdmin):
     list_display = ['poem_title', 'first_line', 'poet_name', 'is_active']

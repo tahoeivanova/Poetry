@@ -25,6 +25,7 @@
 {% if user.is_superuser %}
     <p><a href="{% url 'poems:poem_update' pk=object.pk %}">Изменить</a></p>
     <p><a href="{% url 'poems:poem_delete' pk=object.pk %}">Удалить</a></p>
-    <p><a href="{% url 'poems:poem_add' %}" target="_blank">Добавить стих</a></p>
+    <p
+    ><a href="{% url 'poems:poem_add' %}" target="_blank">Добавить стих</a></p>
 {% endif %}
 {% endblock %}
