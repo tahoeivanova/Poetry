@@ -31,6 +31,11 @@
 - - Exit - выйти.
 
 Схема сайта по ссылке:
+<p align="center">
+  <img src="https://github.com/tahoeivanova/diploma/blob/master/Screen%20Shot%202020-06-04%20at%2017.17.01.png?raw=true
+" width="350" title="hover text">
+</p>
+
 https://github.com/tahoeivanova/diploma/blob/master/Screen%20Shot%202020-06-04%20at%2017.17.01.png?raw=true
 
 Размещение проекта в сети Интернет:
