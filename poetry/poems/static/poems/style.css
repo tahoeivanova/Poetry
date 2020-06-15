@@ -136,6 +136,11 @@ html, body {
     position: absolute;
 }
 
+.dark-theme .footer-class a {
+    color: white;
+    }
+
+
 .dark-theme .btn-01 {
     color: grey;
     margin-top: 20px;
