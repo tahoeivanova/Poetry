@@ -36,6 +36,8 @@
 - - Register - зарегистрироваться.
 - - Exit - выйти.
 
+https://github.com/tahoeivanova/diploma/blob/master/Screen%20Shot%202020-06-04%20at%2017.17.01.png?raw=true
+
 Размещение проекта в сети Интернет:
 
 - Web https://tranquil-refuge-12390.herokuapp.com/
