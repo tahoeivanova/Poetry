@@ -35,3 +35,10 @@
 - - Auth - войти.
 - - Register - зарегистрироваться.
 - - Exit - выйти.
+
+Размещение проекта в сети Интернет:
+
+Web https://tranquil-refuge-12390.herokuapp.com/
+Docker-образ https://hub.docker.com/repository/docker/tahoeivanova/metapoet
+Docker-compose https://github.com/tahoeivanova/Poetry/blob/master/poetry/docker-compose.yml
+Git https://github.com/tahoeivanova/Poetry
