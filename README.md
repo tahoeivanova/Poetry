@@ -1,5 +1,8 @@
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.001.jpg)
-![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.003.jpg)
+
+Основная тема: применение инструментов backend-разработки для освещения творчества поэта в сети Интернет.
+
+
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.004.jpg)
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.005.jpg)
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.006.jpg)
@@ -35,7 +38,6 @@
 
 Веб-сайт “MetaPoet”
 
-Основная тема: применение инструментов backend-разработки для освещения творчества поэта в сети Интернет.
 
 Стек технологий:
 - Язык программирования Python
