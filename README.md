@@ -1,49 +1,60 @@
-# Poetry
-Python, Django, Postgresql, django_rest_framework, gtts, Pymorphy2.
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.001.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.002.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.003.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.004.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.005.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.006.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.007.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.008.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.009.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.010.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.011.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.012.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.013.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.014.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.015.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%2016.001.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.017.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.018.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.019.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.020.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.021.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.022.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.023.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.024.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.025.jpg)
+________________________________________________________________________________________________________________________________
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.026.jpg)
+________________________________________________________________________________________________________________________________
 
-Сайт со стихотворениями Клары Емельяновой.
 
-Общие сведения о проекте: Сайт предназначен для чтения, анализа, а также прослушивания стихов.
+Размещение проекта в сети Интернет:
 
-Цели: совместить поэзию и аналитические инструменты для анализа текста, а также озвучивание текста с помощью синтеза речи gtts.
-
-Задачи:
-
-- +сделать удобным анализ творчества поэта:
-- ++подсчет количества слов
-- ++количество уникальных слов
-- ++топ-100 слов
-- ++словарь стихотворения
-- ++вывод топ-100 слов по частям речи (опции: существительное, прилагательное, глагол);
-- +сделать удобным раздел для автора (чтобы автор мог добавлять свой материал);
-- +сделать интересным ознакомление пользователя с поэзией, как-то: озвучить текст стихотворений с помощью модуля синтеза речи;
-
-
-Аудитория приложения: Люди, проявляющие интерес к поэзии, школьники, студенты, филологи.
-
-Карта сайта:
-- Главная страница - "Home" - название сайта, имя автора стихов; разделы: Стихи, Содержание, Аналитика.
-  - Стихотворения - "Poems" - выводит все стихотворения;
-  - Содержание - "Contents" - поиск по названию, в стихах без названия (* * *) - по первой строке;
-  - Аналитика - Поэтический анализатор: - "Meta" - подсчитвает кол-во слов всего, кол-во уникальных слов, топ-100 слов, топ-100 по частям речи (сущ, прил, глагол) - для выбора параметров реализован checkbox.
-- Содержание - "Contents" - поиск стихов по сайту (общий);
-- Стихотворение (одно):
-  -Название, Текст стихотвоерния;
-  -Словарь стиха.
-  -Аудио
-- API - "API" - все стихи автора, все теги;
-- TOKEN - для зарегистрированного пользователя возможна генерация токена для API, обновление токена.
-- Добавить стихотворение - "Add poem" - для админа ( добавить: название, текст, год, первая строка, выбрать тег, выбрать поэта).
-- Auth - войти.
-- Register - зарегистрироваться.
-- Exit - выйти.
-
-Добавлена пагинация.
-
-Для superuser возможно добавление, изменение и удаление стиха.
-
-Frontend - визуальное оформление:
-CSS-стили, html-страницы, js-скрипты написаны в рамках дополнительного обучения.
-Реализована кнопка переключения цветовых тем (светлый/темный режим).
-На заглавной странице - использован js-скрипт архимедовой спирали.
-
+- Web https://tranquil-refuge-12390.herokuapp.com/
+- Docker-образ https://hub.docker.com/repository/docker/tahoeivanova/metapoet
+- Docker-compose https://github.com/tahoeivanova/Poetry/blob/master/poetry/docker-compose.yml
+- Git https://github.com/tahoeivanova/Poetry
