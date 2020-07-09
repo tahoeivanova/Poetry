@@ -1,5 +1,4 @@
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.001.jpg)
-![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.002.jpg)
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.003.jpg)
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.004.jpg)
 ![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.005.jpg)
