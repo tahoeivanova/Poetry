@@ -1,3 +1,6 @@
+![site_schema_metapoet](https://raw.githubusercontent.com/tahoeivanova/diploma/master/Diploma_metapoet_presentation%20img.001.jpg)
+
+
 # Poetry
 
 Веб-сайт “MetaPoet”
