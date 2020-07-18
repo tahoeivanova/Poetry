@@ -9,7 +9,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 
 
 class TagViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated_CUSTOM | ReadOnly]
+    permission_classes = [IsAdminUser | ReadOnly]
     authentication_classes = [SessionAuthentication, BasicAuthentication, TokenAuthentication]
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
